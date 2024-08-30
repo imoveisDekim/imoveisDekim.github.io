@@ -1,0 +1,791 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base target="_top">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Mapa de Empreendimentos - Diálogo</title>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 100%; /*800px;*/
+			width: 100%; /*800px;*/
+			max-width: 100%;
+			max-height: 100%;
+		}
+	</style>
+
+	
+</head>
+<body>
+
+<div id='map'></div>
+
+<script type="text/javascript" src="./zonasSP.js"></script>
+
+<script type="text/javascript">
+
+
+
+	const map = L.map('map').setView([-23.53872, -46.57684], 12);
+
+	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
+
+	// get color depending on population density value
+	function getColor(d) {
+		return 	d > 4  ? '#d1abb7' : /*Sul - 4*/
+				d > 3  ? '#87CEEB' : /*Oeste - 4*/
+				d > 2  ? '#66CDAA' : /*Norte - 3*/
+				d > 1  ? '#FC4E2A' : /*Leste - 2*/
+				d > 0  ? '#FED976' : '#FFEDA0'; /*Centro - 1*/
+	}
+
+	function style(feature) {
+		return {
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			dashArray: '1',
+			fillOpacity: 0.4,
+			fillColor: getColor(feature.properties.zona)
+		};
+	}
+
+	/* global statesData */
+	const geojson = L.geoJson(statesData, {
+		style,
+	}).addTo(map);
+
+	const LeafIcon = L.Icon.extend({
+		options: {
+			iconSize:     [30, 40],
+			/*
+			shadowUrl: 'leaf-shadow.png',
+			iconSize:     [20, 20],
+			shadowSize:   [50, 64],
+			iconAnchor:   [22, 94],
+			shadowAnchor: [4, 62],
+			popupAnchor:  [-3, -76]
+			*/
+		}
+	});	
+	
+	//const iconPronto = new LeafIcon({iconUrl: 'googleMapPin.png'});
+	//const iconPronto = new LeafIcon({iconUrl: 'google_maps_pin_PNG26.png'});
+	const iconPronto = new LeafIcon({iconUrl: 'google_maps_pin_PNG26.png'});
+	const iconPortfolio = new LeafIcon({iconUrl: 'google_maps_pin_gray.png'});
+	const iconBreveLancamento = new LeafIcon({iconUrl: 'google_maps_pin_lightBlue.png'});
+	const iconLancamento = new LeafIcon({iconUrl: 'google_maps_pin_Blue.png'});
+	const iconConstrucao = new LeafIcon({iconUrl: 'google_maps_pin_Green.png'});
+	
+	
+	//const mGreen = L.marker([-23.48967, -46.72632], {icon: iconPronto}).bindPopup('Inspire Diálogo Home Resort<br>1,2,3 dorms.: 2 dorms c/ suite | 3 suites | estudios<br>Prox. Estação de trem').addTo(map);
+
+
+
+//Prisma Condomínio Clube Vila Ema
+//https://www.google.com/maps/place/Av.+Vila+Ema,+2055+-+Vila+Ema,+S%C3%A3o+Paulo+-+SP,+03281-000/@-23.580888,-46.557022,14z/data=!4m6!3m5!1s0x94ce5c4b01d681ab:0x1e477adea8fe21c5!8m2!3d-23.5808876!4d-46.5570218!16s%2Fg%2F11c2gw08p0?hl=pt-BR&entry=ttu
+const mGreen1 = L.marker([-23.580888,-46.557022], {icon: iconPronto}).bindPopup('Prisma Condomínio Clube Vila Ema<br>Av. Vila Ema, 2055 - Vila Ema<br>71, 86 e 100m²<br>2 e 3 dorms. (1 suíte)<br>A 600m da Estação Oratório').addTo(map);
+
+//Club Station Parque Vila Ema
+//https://www.google.com/maps/place/R.+Domingos+Afonso,+741+-+Vila+Santa+Clara,+S%C3%A3o+Paulo+-+SP,+03161-090/@-23.580877,-46.562958,15z/data=!4m6!3m5!1s0x94ce5c4823e2e6df:0xa20c1f4d0b0ad31b!8m2!3d-23.5808771!4d-46.5629579!16s%2Fg%2F11vqhp9tvh?hl=pt-BR&entry=ttu
+const mGreen2 = L.marker([-23.580877,-46.562958], {icon: iconPronto}).bindPopup('Club Station Parque Vila Ema<br>R. Domingos Afonso, 741 - Vila Santa Clara<br>27 a 88m²<br>1 a 3 dorms. (1 suíte)<br>Próximo a Estação Oratório').addTo(map);
+
+//Quadra Diálogo Home Club
+//https://www.google.com/maps/place/Av.+Vila+Ema,+1920+-+Vila+Ema,+S%C3%A3o+Paulo+-+SP,+03282-000/@-23.580953,-46.558369,14z/data=!4m6!3m5!1s0x94ce5c4a49cd1bdf:0xc3e8b7463c1c0747!8m2!3d-23.5809534!4d-46.5583692!16s%2Fg%2F11csn9lv4c?hl=pt-BR&entry=ttu
+const mGreen3 = L.marker([-23.580953,-46.558369], {icon: iconPronto}).bindPopup('Quadra Diálogo Home Club<br>Av. Vila Ema, 1920 - Vila Ema<br>70 a 98m²<br>2 e 3 dorms. (1 suíte)<br>A 350m da Estação Oratório<br><br>Quadra Diálogo Home Club Smart<br>Av. Vila Ema, 1920 - Vila Ema<br>28 a 42m²<br>2 dorms. - 1 suíte<br>A 350m da Estação Oratório').addTo(map);
+
+//Varanda Vila Ema
+//https://www.google.com/maps?ll=-23.581868,-46.552997&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Vila+Ema,+2468+-+Vila+Ema+S%C3%A3o+Paulo+-+SP+03282-000
+const mGreen4 = L.marker([-23.581868,-46.552997], {icon: iconPronto}).bindPopup('Varanda Vila Ema').addTo(map);
+
+//Saiba mais sobre futuro lançamento - Vila Ema 5
+//https://www.google.com/maps?ll=-23.581455,-46.56396&z=20&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Vila+Ema,+1330+-+Vila+Prudente+S%C3%A3o+Paulo+-+SP+03156-000
+const mGreen5 = L.marker([-23.581868,-46.552997], {icon: iconBreveLancamento}).bindPopup('Futuro lançamento - Vila Ema 5').addTo(map);
+
+//Saiba mais sobre futuro lançamento - Vila Ema 6 - Mesmo lugar do Prisma
+//https://www.google.com/maps?ll=-23.580888,-46.557022&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Vila+Ema,+2055+-+Vila+Ema+S%C3%A3o+Paulo+-+SP+03281-000
+//const mGreen6 = L.marker([-23.580888,-46.557022], {icon: iconBreveLancamento}).bindPopup('Saiba mais sobre futuro lançamento - Vila Ema 6').addTo(map);
+
+//Quadra Diálogo Home Club Smart
+//https://www.google.com/maps?ll=-23.580953,-46.558369&z=14&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Vila+Ema,+1920+-+Vila+Ema+S%C3%A3o+Paulo+-+SP+03282-000
+//const mGreen7 = L.marker([-23.580953,-46.558369], {icon: iconPronto}).bindPopup('Quadra Diálogo Home Club Smart').addTo(map);
+
+//Reserva Vila Ema - Portfólio
+//https://www.google.com/maps/place/Av.+Vila+Ema,+4049+-+Vila+Ema,+S%C3%A3o+Paulo+-+SP,+03281-001/@-23.590211,-46.541587,16z/data=!4m6!3m5!1s0x94ce5da72310d86d:0x1e07a4ffdfc7b572!8m2!3d-23.5902261!4d-46.5413325!16s%2Fg%2F11spzqf497?hl=pt-BR&entry=ttu
+const mGreen8 = L.marker([-23.590211,-46.541587], {icon: iconPortfolio}).bindPopup('Reserva Vila Ema').addTo(map);
+
+//Panoramico Smart
+//https://www.google.com/maps/place/R.+Ibitirama,+190+-+Vila+Prudente,+S%C3%A3o+Paulo+-+SP,+03134-000/@-23.583512,-46.584814,16z/data=!4m6!3m5!1s0x94ce5c0de0439539:0x7a43820c7a5ab370!8m2!3d-23.5835125!4d-46.5848138!16s%2Fg%2F11c5jj5vs4?hl=pt-BR&entry=ttu
+const mGreen9 = L.marker([-23.583512,-46.584814], {icon: iconPronto}).bindPopup('Panoramico Smart').addTo(map);
+
+//Panoramico Home
+//https://www.google.com/maps/place/R.+Ibitirama,+166+-+Vila+Prudente,+S%C3%A3o+Paulo+-+SP,+03134-000/@-23.583325,-46.585046,16z/data=!4m6!3m5!1s0x94ce5c0e7501c1c3:0xe5af1d54932f7055!8m2!3d-23.583325!4d-46.585046!16s%2Fg%2F11c13llly8?hl=pt-BR&entry=ttu
+const mGreen10 = L.marker([-23.583325,-46.585046], {icon: iconPronto}).bindPopup('Panoramico Home').addTo(map);
+
+//GranDiálogo Vila Prudente - Gran Home Club
+//https://www.google.com/maps/place/Av.+do+Orat%C3%B3rio,+401+-+Vila+Independencia,+S%C3%A3o+Paulo+-+SP,+03221-000/@-23.582471,-46.560263,16z/data=!4m6!3m5!1s0x94ce5d58a0b9ed1d:0x3d8e808bd4404c44!8m2!3d-23.5824712!4d-46.5602632!16s%2Fg%2F11y55lw5_d?hl=pt-BR&entry=ttu
+const mGreen11 = L.marker([-23.582471,-46.560263], {icon: iconPronto}).bindPopup('GranDiálogo Vila Prudente - Gran Home Club').addTo(map);
+
+//GranDiálogo Vila Prudente - Gran Smart
+//https://www.google.com/maps?ll=-23.582538,-46.560646&z=12&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+do+Orat%C3%B3rio,+291+-+Jardim+Independ%C3%AAncia+(S%C3%A3o+Paulo)+S%C3%A3o+Paulo+-+SP+03221-000
+const mGreen12 = L.marker([-23.582538,-46.560646], {icon: iconPronto}).bindPopup('GranDiálogo Vila Prudente - Gran Smart').addTo(map);
+
+//Club Station Vila Prudente
+//https://www.google.com/maps/place/R.+Cavour,+612+-+Vila+Prudente,+S%C3%A3o+Paulo+-+SP,+03136-010/@-23.582511,-46.578781,16z/data=!4m6!3m5!1s0x94ce5c138aa9130d:0x649f0adff535e029!8m2!3d-23.5825109!4d-46.5787811!16s%2Fg%2F11bw3x8gls?hl=pt-BR&entry=ttu
+const mGreen13 = L.marker([-23.582511,-46.578781], {icon: iconPronto}).bindPopup('Club Station Vila Prudente').addTo(map);
+
+//Diálogo Panoramico Mall - Sem endereço
+
+
+//Diálogo Panoramico Offices
+//https://www.google.com/maps/place/R.+Ibitirama,+166+-+Vila+Prudente,+S%C3%A3o+Paulo+-+SP,+03134-000/@-23.583325,-46.585046,16z/data=!4m6!3m5!1s0x94ce5c0e7501c1c3:0xe5af1d54932f7055!8m2!3d-23.583325!4d-46.585046!16s%2Fg%2F11c13llly8?hl=pt-BR&entry=ttu
+const mGreen14 = L.marker([-23.583325,-46.585046], {icon: iconPronto}).bindPopup('Diálogo Panoramico Offices').addTo(map);
+
+//GranDiálogo Vila Prudente - Gran Mall - sem enereço
+
+
+//GranDiálogo Vila Prudente - Gran Offices
+//https://www.google.com/maps?ll=-23.582538,-46.560646&z=12&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+do+Orat%C3%B3rio,+291+-+Jardim+Independ%C3%AAncia+(S%C3%A3o+Paulo)+S%C3%A3o+Paulo+-+SP+03221-000
+const mGreen15 = L.marker([-23.582538,-46.560646], {icon: iconPronto}).bindPopup('Diálogo Panoramico Offices').addTo(map);
+
+//Metropolitan Vila Prudente
+//https://www.google.com/maps/place/R.+Cavour,+99+-+Vila+Prudente,+S%C3%A3o+Paulo+-+SP,+03136-010/@-23.583548,-46.583434,16z/data=!4m6!3m5!1s0x94ce5c1211bd7bc9:0x9f2c5957dcc0cf85!8m2!3d-23.583548!4d-46.5834336!16s%2Fg%2F11c14gnq_x?hl=pt-BR&entry=ttu
+const mGreen16 = L.marker([-23.583548,-46.583434], {icon: iconPronto}).bindPopup('Metropolitan Vila Prudente').addTo(map);
+
+//Reserva Chamantá
+//https://www.google.com/maps/place/Rua+Chamant%C3%A1,+236+-+Vila+Prudente,+S%C3%A3o+Paulo+-+SP,+03127-000/@-23.57362,-46.585591,16z/data=!4m6!3m5!1s0x94ce5c037aeb2683:0xbef852d34c156fb2!8m2!3d-23.5736202!4d-46.5855906!16s%2Fg%2F11c2d5pcm9?hl=pt-BR&entry=ttu
+const mGreen17 = L.marker([-23.57362,-46.585591], {icon: iconPronto}).bindPopup('Reserva Chamantá').addTo(map);
+
+//Saiba mais sobre futuro lançamento - Vila Prudente
+//https://www.google.com/maps?ll=-23.577289,-46.586076&z=14&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Rua+Chamant%C3%A1,+708+-+Vila+Prudente+S%C3%A3o+Paulo+-+SP+03127-000
+const mGreen18 = L.marker([-23.577289,-46.586076], {icon: iconBreveLancamento}).bindPopup('futuro lançamento - Vila Prudente').addTo(map);
+
+//GranDiálogo Vila Matilde - Gran Smart - Pronto para investir
+descr_empree = 'GranDiálogo Vila Matilde - Gran Smart<br>R. Joaquim Marra, 110 - Vila Matilde<br>26 e 27m²<br>Studio<br>350m do Metrô Vila Matilde';
+//https://www.google.com/maps?ll=-23.533443,-46.52812&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Joaquim+Marra,+110+-+Vila+Matilde+S%C3%A3o+Paulo+-+SP+03514-000
+const mGreen19 = L.marker([-23.533443,-46.52812], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//Grand Home Club Mall - Sem endereço
+
+
+//GranDiálogo Vila Matilde - Gran Offices
+descr_empree = 'GranDiálogo Vila Matilde - Gran Offices - Pronto para investir<br>R. Joaquim Marra, 110 - Vila Matilde<br>Salas comerciais<br>350m do Metrô Vila Matilde';
+//https://www.google.com/maps/place/R.+Joaquim+Marra,+110+-+Vila+Matilde,+S%C3%A3o+Paulo+-+SP,+03514-000/@-23.533443,-46.52812,16z/data=!4m6!3m5!1s0x94ce5e171c58f6df:0x93f839a6d2ff7ec1!8m2!3d-23.5334428!4d-46.52812!16s%2Fg%2F11b8vd3fb_?hl=pt-BR&entry=ttu
+const mGreen20 = L.marker([-23.533443,-46.52812], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//GranDiálogo Vila Matilde - Gran Smart
+//https://www.google.com/maps/place/R.+Joaquim+Marra,+110+-+Vila+Matilde,+S%C3%A3o+Paulo+-+SP,+03514-000/@-23.533443,-46.52812,16z/data=!4m6!3m5!1s0x94ce5e171c58f6df:0x93f839a6d2ff7ec1!8m2!3d-23.5334428!4d-46.52812!16s%2Fg%2F11b8vd3fb_?hl=pt-BR&entry=ttu
+//const mGreen21 = L.marker([-23.533443,-46.52812], {icon: iconPronto}).bindPopup('GranDiálogo Vila Matilde - Gran Smart').addTo(map);
+
+//Tradição Vila Matilde
+descr_empree = 'Tradição Vila Matilde - Portfólio<br>R. Cel. Pedro Dias de Campos, 877 - Chácara Seis de Outubro, São Paulo-SP<br>2 e 3 Dorms.<br>';
+//https://www.google.com/maps?ll=-23.533014,-46.533876&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Cel.+Pedro+Dias+de+Campos,+877+-+Ch%C3%A1cara+Seis+de+Outubro+S%C3%A3o+Paulo+-+SP+03508-010
+const mGreen22 = L.marker([-23.533014,-46.533876], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+
+
+
+///// Tatuapé
+//Vitrine Tatuapé Condomínio Clube
+descr_empree = 'Vitrine Tatuapé Condomínio Clube - Em construção<br>R. Guaraciaba, 401 - Vila Carrão<br>68 a 103m²<br>2 e 3 dorms. (1 suíte), 3 suítes<br>Próximo a Estação Carrão';
+//https://www.google.com/maps/place/R.+Guaraciaba,+401+-+Vila+Carr%C3%A3o,+S%C3%A3o+Paulo+-+SP,+03404-000/@-23.538347,-46.553885,16z/data=!4m6!3m5!1s0x94ce5e5feb9abcd5:0x8569942e96dc8b8f!8m2!3d-23.5383468!4d-46.5538855!16s%2Fg%2F11c4mgn9bh?hl=pt-BR&entry=ttu
+const mGreen1t = L.marker([-23.538347,-46.553885], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+//Vista Tatuapé Boulevard
+descr_empree = 'Vista Tatuapé Boulevard - Em construção<br>Rua Melo Peixoto, 241 - São Paulo - SP<br>24 a 118m²<br>2 e 3 dorms. (1 suíte), 3 suítes e Studios<br>A 600m* do Shop. Metrô Boulevard Tatuapé';
+//https://www.google.com/maps?ll=-23.538675,-46.570817&z=18&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Melo+Peixoto,+295+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03070-000
+const mGreen2t = L.marker([-23.538675,-46.570817], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+//Landmark Tatuapé by Diálogo
+descr_empree = 'Landmark Tatuapé by Diálogo - Em Construção<br>Rua Coronel Sousa Reis, 212 - São Paulo - SP<br>75 a 119m²<br>2 e 3 dorms. (1 suíte) - 3 suítes<br>A 250m da Estação Carrão';
+//https://www.google.com/maps?ll=-23.536127,-46.567072&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Cel.+Sousa+Reis,+212+-+Vila+Zilda+S%C3%A3o+Paulo+-+SP+03069-010
+const mGreen3t = L.marker([-23.536127,-46.567072], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+//High Line Tatuapé
+descr_empree = 'High Line Tatuapé - Em construção<br>Rua Padre Adelino, 1727 - São Paulo - SP<br>Empreendimento:<br>Rua Irapé, 275 - São Paulo - SP<br>71m² a 110m²<br>2 e 3 dorms. (1 suíte), 3 suítes e salas comerciais<br>A 550 metros da estação Tatuapé';
+//https://www.google.com/maps?ll=-23.54356,-46.578007&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Irap%C3%A9,+275+-+Cidade+M%C3%A3e+do+C%C3%A9u+S%C3%A3o+Paulo+-+SP+03304-040
+const mGreen4t = L.marker([-23.54356,-46.578007], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+//High Park Tatuapé
+descr_empree = 'High Park Tatuapé - Pronto para morar<br>Rua Santa Maria, 135 - São Paulo - SP<br>82 a 144m²<br>3 e 4 dorms. (1 a 3 suítes)<br>Próximo ao Parque Piqueri';
+//https://www.google.com/maps?ll=-23.532172,-46.568849&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Santa+Maria,+135+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03085-000
+const mGreen5t = L.marker([-23.532172,-46.568849], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//D/Home Tatuapé
+descr_empree = 'D/Home Tatuapé - Pronto para morar<br>Rua André Vidal, 21 - São Paulo - SP<br>112m²<br>3 suítes<br>550m do Shopping Metrô Boulevard Tatuapé';
+//https://www.google.com/maps/place/R.+Andr%C3%A9+Vidal,+21+-+Tatuap%C3%A9,+S%C3%A3o+Paulo+-+SP,+03065-070/@-23.535952,-46.58038,16z/data=!4m6!3m5!1s0x94ce5edbbc796be7:0x87cdb302adbd84fc!8m2!3d-23.5359524!4d-46.5803804!16s%2Fg%2F11p0vd7c67?hl=pt-BR&entry=ttu
+const mGreen6t = L.marker([-23.532172,-46.568849], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//Absoluto Tatuapé
+descr_empree = 'Absoluto Tatuapé - Pronto para morar<br>R. Vitório Ramalho, 80 - Tatuapé<br>105 e 129m²<br>4 dorms. • 3 suítes • 2 vagas<br>Torre única em terreno de 2.482m²';
+//https://www.google.com/maps?ll=-23.532035,-46.562184&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Vit%C3%B3rio+Ramalho,+80+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03087-080
+const mGreen7t = L.marker([-23.532035,-46.562184], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//HUB Home Club Tatuapé
+descr_empree = 'HUB Home Club Tatuapé - Pronto para morar<br>R. Antônio Morais Barros, 97 - Tatuapé<br>67 e 87m²<br>2 e 3 dorms, 1 suíte<br>Viva com lazer de clube a 450m da estação Carrão';
+//https://www.google.com/maps/place/R.+Ant%C3%B4nio+Morais+Barros,+97+-+Tatuap%C3%A9,+S%C3%A3o+Paulo+-+SP,+03069-050/@-23.534147,-46.56443,16z/data=!4m6!3m5!1s0x94ce5eefe29e5809:0x42743935bb8fb49c!8m2!3d-23.534147!4d-46.56443!16s%2Fg%2F11rg6prcqc?hl=pt-BR&entry=ttu
+const mGreen8t = L.marker([-23.534147,-46.56443], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//Exclusive Tatuapé
+descr_empree = 'Exclusive Tatuapé - Pronto para morar<br>R. Duarte de Carvalho, 60 - Tatuapé<br>106m²<br>3 suítes - 2 vagas determ. + dep. privativo*<br>Torre única em um terreno de 1.848m²';
+//https://www.google.com/maps/place/R.+Duarte+de+Carvalho,+60+-+Tatuap%C3%A9,+S%C3%A3o+Paulo+-+SP,+03084-030/@-23.53565,-46.572188,16z/data=!4m6!3m5!1s0x94ce5ee7cfbeef77:0x83226709406711ca!8m2!3d-23.5356505!4d-46.5721879!16s%2Fg%2F11cskd9qfg?hl=pt-BR&entry=ttu
+const mGreen9t = L.marker([-23.53565,-46.572188], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+
+//Linea Home Resort Tatuapé
+descr_empree = 'Linea Home Resort Tatuapé - Pronto para morar<br>Rua Dr. Coryntho Baldoíno Costa, 152 - São Paulo - SP<br>66, 81, 87 e 94m²<br>2 e 3 dorms. (1 suíte)<br>A 20m da estação Carrão';
+//https://www.google.com/maps/@-23.53625,-46.565222,16z?hl=pt-BR&entry=ttu
+const mGreen10t = L.marker([-23.53625,-46.565222], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//Forma Tatuapé
+descr_empree = 'Forma Tatuapé - Pronto para morar<br>R. Antônio de Barros, 1041 - Tatuapé<br>113 e 235m²<br>3 suítes – 2 vagas<br>Torre única em um terreno de esquina com 2.300m²';
+//https://www.google.com/maps?ll=-23.539393,-46.557438&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Ant%C3%B4nio+de+Barros,+1041+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03401-000
+const mGreen11t = L.marker([-23.539393,-46.557438], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+// Praça Tatuapé
+descr_empree = 'Praça Tatuapé - Pronto para morar<br>R. Bom Sucesso, 366 - Tatuapé<br>74m² a 224m²<br>3 suítes, 2 e 3 dorms. (1 suíte)<br>200m da estação Tatuapé';
+descr_empree += '<br><br>Praça Tatuapé Studios - Pronto para morar ou investir<br>22 a 35m²<br>Studio<br>A 200m do Metrô Tatuapé';
+//https://www.google.com/maps?ll=-23.543914,-46.576738&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Bom+Sucesso,+366+-+Cidade+M%C3%A3e+do+C%C3%A9u+S%C3%A3o+Paulo+-+SP+03305-000
+const mGreen12t = L.marker([-23.543914,-46.576738], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//Praça Tatuapé Studios
+//https://www.google.com/maps?ll=-23.543914,-46.576738&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Bom+Sucesso,+366+-+Cidade+M%C3%A3e+do+C%C3%A9u+S%C3%A3o+Paulo+-+SP+03305-000
+
+//D/Home Tatuapé Mall
+//550m do Shopping Metrô Boulevard Tatuapé
+//Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.
+
+
+//Exclusive Tatuapé Mall
+//A 700m do shopping Boulevard Tatuapé
+//Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.
+
+//Forma Tatuapé Mall
+//A poucos minutos da Praça Sílvio Romero
+//Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.
+
+//Linea Home Resort Tatuapé Mall
+//A 20m do Metrô Carrão
+//Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.
+
+//Praça Tatuapé Mall
+//200m da estação Tatuapé
+//Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.
+
+//Saiba mais sobre futuro lançamento
+descr_empree = 'Futuro lançamento<br><br>R. Dr. Coryntho Baldoíno Costa, 380 - Vila Zilda';
+//https://www.google.com/maps?ll=-23.536215,-46.563579&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Dr.+Coryntho+Baldo%C3%ADno+Costa,+380+-+Vila+Zilda+S%C3%A3o+Paulo+-+SP+03069-070
+const mGreen13t = L.marker([-23.543914,-46.576738], {icon: iconBreveLancamento}).bindPopup(descr_empree).addTo(map);
+
+// Linea Home Resort Studios
+descr_empree = 'Linea Home Resort Studios - Pronto para morar<br>R. Dr. Ângelo Vita, 335 - Tatuapé<br>24 a 31m²<br>A 20m do Metrô Carrão';
+//https://www.google.com/maps?ll=-23.536965,-46.565173&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Dr.+%C3%82ngelo+Vita,+335+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03069-000
+const mGreen14t = L.marker([-23.536965,-46.565173], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+// Boulevard dos Cristais
+descr_empree = 'Boulevard dos Cristais - Portfólio<br>R. Cristais, 183 - Tatuapé<br>2 e 3 Dorms.';
+//https://www.google.com/maps?ll=-23.539203,-46.577595&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Cristais,+183+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03065-040
+const mGreen15t = L.marker([-23.539203,-46.577595], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+//Ed. Valentina
+descr_empree = 'Ed. Valentina - Portfólio<br>R. Atucuri, 272 - Chácara Santo Antônio (Zona Leste)<br>2 e 3 Dorms.';
+//https://www.google.com/maps?ll=-23.547006,-46.546698&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Atucuri,+272+-+Ch%C3%A1cara+Santo+Ant%C3%B4nio+(Zona+Leste)+S%C3%A3o+Paulo+-+SP+03411-000
+const mGreen16t = L.marker([-23.547006,-46.546698], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+// Landscape Tatuapé
+descr_empree = 'Landscape Tatuapé - Portfólio<br>R. Cel. Carlos Oliva, 104 - Tatuapé<br>3 Dorms.';
+//https://www.google.com/maps/place/R.+Cel.+Carlos+Oliva,+104+-+Tatuap%C3%A9,+S%C3%A3o+Paulo+-+SP,+03067-010/@-23.536933,-46.57304,16z/data=!4m6!3m5!1s0x94ce5ee80c943e03:0xae6f2a757d1296db!8m2!3d-23.5369333!4d-46.5730404!16s%2Fg%2F11hcw3vznw?hl=pt-BR&entry=ttu
+const mGreen17t = L.marker([-23.536933,-46.57304], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+// Residencial Petrus
+descr_empree = 'Residencial Petrus - Portfólio<br>R. Ivaí, 71 - Tatuapé<br>2 e 3 Dorms.';
+//https://www.google.com/maps?ll=-23.534348,-46.579152&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Iva%C3%AD,+71+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03080-010
+const mGreen18t = L.marker([-23.534348,-46.579152], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+// Urban Home Tatuapé
+descr_empree = 'Urban Home Tatuapé - Portfólio<br>R. Melo Peixoto, 405 - São Paulo - SP<br>2 Dorms';
+//https://www.google.com/maps?ll=-23.538363,-46.569475&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Melo+Peixoto,+405+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03070-000
+const mGreen19t = L.marker([-23.538363,-46.569475], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+// Vereda Parque Tuiuti
+descr_empree = 'Vereda Parque Tuiuti - Portfólio<br>R. Tuiuti, 732 - São Paulo - SP<br>3 Dorms.';
+//https://www.google.com/maps?ll=-23.531857,-46.575964&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Tuiuti,+732+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03081-015
+const mGreen20t = L.marker([-23.531857,-46.575964], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+// Vereda Tatuapé
+descr_empree = 'Vereda Tatuapé - Portfólio<br>R. São Jorge, 300 - Parque São Jorge<br>3 Dorms.';
+//https://www.google.com/maps/place/R.+S%C3%A3o+Jorge,+300+-+Parque+S%C3%A3o+Jorge,+S%C3%A3o+Paulo+-+SP,+03087-000/@-23.530383,-46.565118,16z/data=!4m6!3m5!1s0x94ce5ee4c4ea2c0b:0x88b4c8d991c2c30a!8m2!3d-23.5303828!4d-46.5651184!16s%2Fg%2F11cskssxqk?hl=pt-BR&entry=ttu
+const mGreen21t = L.marker([-23.530383,-46.565118], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+// Vitório Tatuapé
+descr_empree = 'Vitório Tatuapé - Portfólio<br>R. Vitório Ramalho, 122 - Parque São Jorge<br>2 e 3 Dorms.';
+//https://www.google.com/maps/place/R.+Vit%C3%B3rio+Ramalho,+122+-+Parque+S%C3%A3o+Jorge,+S%C3%A3o+Paulo+-+SP,+03087-080/@-23.531565,-46.562275,16z/data=!4m6!3m5!1s0x94ce5efa8ad6b711:0x7c0deb1be30fabe7!8m2!3d-23.5315654!4d-46.5622751!16s%2Fg%2F11b8zd4z62?hl=pt-BR&entry=ttu
+const mGreen22t = L.marker([-23.531565,-46.562275], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+// Landmark Tatuapé by Diálogo Studios
+descr_empree = 'Landmark Tatuapé by Diálogo Studios - Em Construção<br>R. Cel. Sousa Reis, 212 - Vila Zilda<br>25 a 31m²<br>Studios<br>A 250m da Estação Carrão';
+//https://www.google.com/maps?ll=-23.536127,-46.567072&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Cel.+Sousa+Reis,+212+-+Vila+Zilda+S%C3%A3o+Paulo+-+SP+03069-010
+const mGreen23t = L.marker([-23.536127,-46.567072], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+
+//Localizado no bairro do Tatuapé
+//Rua Fernandes Pinheiros - São Paulo - SP
+
+
+//// Mooca //
+
+// The Place
+descr_empree = 'The Place - Pronto para morar<br>Av. Paes de Barros, 3399 - Parque da Mooca<br>145, 91, 79, 75, 70m²<br>3 e 2 dorms. (1 suite)<br>Apenas 750 metros da Estação Vila Prudente';
+//https://www.google.com/maps/place/Av.+Paes+de+Barros,+3399+-+Parque+da+Mooca,+S%C3%A3o+Paulo+-+SP,+03149-100/@-23.580479,-46.586468,16z/data=!4m6!3m5!1s0x94ce5c0f0c891cff:0xc056484041e012b0!8m2!3d-23.580479!4d-46.586468!16s%2Fg%2F11c26gdmhm?hl=pt-BR&entry=ttu
+const mGreen2m = L.marker([-23.580479,-46.586468], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+// High Mooca
+descr_empree = 'High Mooca - Pronto para morar<br>159 e 129m²<br>4 dorms. (2 suites), 3 suites/ Vagas determinadas + deposito<br>A 180m da avenida Paes de Barros';
+//https://www.google.com/maps/place/R.+Me.+de+Deus,+1474+-+Tatuap%C3%A9,+S%C3%A3o+Paulo+-+SP,+03119-001/@-23.566823,-46.590279,16z/data=!4m6!3m5!1s0x94ce5f965cffe279:0x3ca2471a432a7515!8m2!3d-23.5668737!4d-46.5899984!16s%2Fg%2F11vks57xzz?hl=pt-BR&entry=ttu
+const mGreen3m = L.marker([-23.580479,-46.586468], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//High Mooca Mall
+//A 180m da Av. Paes de Barros
+//Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.
+
+// The Place Offices
+descr_empree = 'The Place Offices - Pronto para investir<br>Av. Paes de Barros, 3399 - Parque da Mooca<br>Salas comerciais a partir de 35m²<br>Apenas 750 metros da Estação Vila Prudente';
+//https://www.google.com/maps/place/Av.+Paes+de+Barros,+3399+-+Parque+da+Mooca,+S%C3%A3o+Paulo+-+SP,+03149-100/@-23.580479,-46.586468,16z/data=!4m6!3m5!1s0x94ce5c0f0c891cff:0xc056484041e012b0!8m2!3d-23.580479!4d-46.586468!16s%2Fg%2F11c26gdmhm?hl=pt-BR&entry=ttu
+const mGreen4m = L.marker([-23.580479,-46.586468], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//The Place Mall
+//Apenas 750 metros da Estação Vila Prudente
+//Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.
+
+// Allegro
+descr_empree = 'Allegro - Portfólio<br>Rua Jaboticabal, 554 - Mooca<br>2 e 3 Dorms.';
+//https://www.google.com/maps/place/Rua+Jaboticabal,+554+-+Mooca,+S%C3%A3o+Paulo+-+SP,+03188-000/@-23.561895,-46.578089,16z/data=!4m6!3m5!1s0x94ce5ea3e2518ea1:0xdd42ea252f92f1b!8m2!3d-23.5618955!4d-46.5780894!16s%2Fg%2F11f_200_9q?hl=pt-BR&entry=ttu
+const mGreen5m = L.marker([-23.561895,-46.578089], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+
+// Residencial Inspiratto
+descr_empree = 'Residencial Inspiratto - Portfólio<br>R. Cuiabá, 55 - Alto da Mooca<br>2 e 3 Dorms.';
+//https://www.google.com/maps/place/R.+Cuiab%C3%A1,+55+-+Alto+da+Mooca,+S%C3%A3o+Paulo+-+SP,+03183-000/@-23.558044,-46.595392,16z/data=!4m6!3m5!1s0x94ce594b7bd5ad19:0x5cacc060ff1e8174!8m2!3d-23.5580442!4d-46.5953923!16s%2Fg%2F11c4tjhltp?hl=pt-BR&entry=ttu
+const mGreen6m = L.marker([-23.558044,-46.595392], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+// Vereda Alto da Mooca
+descr_empree = 'Vereda Alto da Mooca - Portfólio<br>Rua Marquês de Valença, 260 - Alto da Mooca<br>3 Dorms.';
+//https://www.google.com/maps/place/Rua+Marqu%C3%AAs+de+Valen%C3%A7a,+260+-+Alto+da+Mooca,+S%C3%A3o+Paulo+-+SP,+03182-040/@-23.558288,-46.593369,16z/data=!4m6!3m5!1s0x94ce594cb2883fe1:0xa0697e5d3d216be0!8m2!3d-23.5582881!4d-46.5933692!16s%2Fg%2F11dz57nm07?hl=pt-BR&entry=ttu
+const mGreen7m = L.marker([-23.558288,-46.593369], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+// Futuro lançamento Mooca
+descr_empree = 'Futuro lançamento Mooca<br>R. Padre Raposo, 298 - Mooca';
+//https://www.google.com/maps/place/R.+Padre+Raposo,+298+-+Mooca,+S%C3%A3o+Paulo+-+SP,+03118-000/@-23.559006,-46.598028,16z/data=!4m6!3m5!1s0x94ce594bfc6169b1:0x42b73bede25721fb!8m2!3d-23.559006!4d-46.5980276!16s%2Fg%2F11cs9ccdt6?hl=pt-BR&entry=ttu
+const mGreen8m = L.marker([-23.559006,-46.598028], {icon: iconBreveLancamento}).bindPopup(descr_empree).addTo(map);
+
+
+
+
+
+///// Guilhermina
+//Guilhermina
+//https://www.google.com/maps/place/R.+Astorga,+370+-+Vila+Guilhermina,+S%C3%A3o+Paulo+-+SP,+03542-000/@-23.529253,-46.513123,16z/data=!4m6!3m5!1s0x94ce60a13a644fb5:0xf0b8006bb2b26e45!8m2!3d-23.5292529!4d-46.5131232!16s%2Fg%2F11f6dmqc33?hl=pt-BR&entry=ttu
+//const mGreen23 = L.marker([-23.529253,-46.513123], {icon: iconPronto}).bindPopup('Home Resort Astorga by Diálogo - Em construção<br>69 a 110m²<br>2 e 3 dorms (1 suíte) - 3 suítes 1 ou 2 vagas<br>A 350m da estação Guilhermina/Esperança. Próximo à Radial.').addTo(map);
+
+//Oásis Condomínio Clube - Em Construção
+//https://www.google.com/maps/place/R.+Jaguaria%C3%ADva,+20+-+Vila+Guilhermina,+S%C3%A3o+Paulo+-+SP,+03545-070/@-23.528644,-46.513626,16z/data=!4m6!3m5!1s0x94ce60a11dcbbe9b:0x6aa77bd2a263d4b3!8m2!3d-23.5286131!4d-46.5137226!16s%2Fg%2F11c4_9t377?hl=pt-BR&entry=ttu
+const mGreen24 = L.marker([-23.528644,-46.513626], {icon: iconConstrucao}).bindPopup('Oásis Condomínio Clube - Em Construção<br>R. Jaguariaíva, 20 - Vila Guilhermina<br>32 a 94m²<br>2 e 3 dorms. (1 suíte), 1 suíte, 2 dorms.<br>A 350m da Estação Guilhermina-Esperança.').addTo(map);
+
+descr_empree = 'Home Resort Astorga by Diálogo Smart - Em Construção<br>R. Astorga, 370 - Vila Guilhermina<br>28 a 40m²<br>1 Suíte e 2 Dorms.<br>A 350m do Metrô Guilhermina/Esperança. Próximo à Radial.<br><br>Home Resort Astorga by Diálogo Offices<br>R. Astorga, 370 - Vila Guilhermina<br>18 a 31m²<br>Salas comerciais<br>A 350m da estação Guilhermina/Esperança. Próximo à Radial.';
+//https://www.google.com/maps/place/R.+Astorga,+370+-+Vila+Guilhermina,+S%C3%A3o+Paulo+-+SP,+03542-000/@-23.529253,-46.513123,16z/data=!4m6!3m5!1s0x94ce60a13a644fb5:0xf0b8006bb2b26e45!8m2!3d-23.5292529!4d-46.5131232!16s%2Fg%2F11f6dmqc33?hl=pt-BR&entry=ttu
+const mGreen25 = L.marker([-23.529253,-46.513123], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+//https://www.google.com/maps/place/R.+Astorga,+370+-+Vila+Guilhermina,+S%C3%A3o+Paulo+-+SP,+03542-000/@-23.529253,-46.513123,16z/data=!4m6!3m5!1s0x94ce60a13a644fb5:0xf0b8006bb2b26e45!8m2!3d-23.5292529!4d-46.5131232!16s%2Fg%2F11f6dmqc33?hl=pt-BR&entry=ttu
+
+descr_empree = 'Next Astorga Condomínio Clube - Pronto<br>R. Astorga, 460 - Vila Guilhermina<br>63, 81 e 87m²<br>2 e 3 dorms, 1 suíte<br>A 250m da estação Guilhermina – Esperança';
+//https://www.google.com/maps/place/R.+Astorga,+460+-+Vila+Guilhermina,+S%C3%A3o+Paulo+-+SP,+03542-000/@-23.529624,-46.514509,16z/data=!4m6!3m5!1s0x94ce60a0dc80fd1f:0x8f5495fa7173bfba!8m2!3d-23.5296242!4d-46.5145093!16s%2Fg%2F11h597rjt3?hl=pt-BR&entry=ttu
+const mGreen26 = L.marker([-23.529624,-46.514509], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//Next Astorga Condomínio Clube Mall - Pronto para investir
+//Sem endereço
+//A 250m do Metrô Guilhermina – Esperança
+//Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.
+
+
+//// Patriarca
+
+
+
+
+//// Jd Prudencia
+//Verdana Jardim Prudência
+descr_empree = 'Verdana Jardim Prudência - Pronto para morar<br>R. Ossian Terceiro Teles, 205 - Jardim Prudência<br>75, 89, 114m²<br>3 suítes - 3 e 2 dorms. (1 suíte)<br>Sua melhor opção entre o Brooklin e a Vila Mascote';
+//https://www.google.com/maps/place/R.+Ossian+Terceiro+Teles,+205+-+Jardim+Prud%C3%AAncia,+S%C3%A3o+Paulo+-+SP,+04649-000/@-23.650942,-46.671994,16z/data=!4m6!3m5!1s0x94ce50766c3bb8a3:0xfcdb550c07a03706!8m2!3d-23.6509423!4d-46.6719944!16s%2Fg%2F11c29x4rsk?hl=pt-BR&entry=ttu
+const mGreen28 = L.marker([-23.650942,-46.671994,16], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//Verdana Suites
+descr_empree = 'Verdana Suites - Pronto para morar<br>R. Ossian Terceiro Teles, 205 - Jardim Prudência<br>28m²<br>1 suíte<br>Sua melhor opção entre o Brooklin e a Vila Mascote';
+//https://www.google.com/maps?ll=-23.650942,-46.671994&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Ossian+Terceiro+Teles,+205+-+Jardim+Prud%C3%AAncia+S%C3%A3o+Paulo+-+SP+04649-000
+const mGreen29 = L.marker([-23.650942,-46.671994], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//High Jd Prudência
+descr_empree = 'High Jd Prudência - Pronto para morar<br>Rua das Flechas, 484 - São Paulo - SP<br>149, 112 e 81m²<br>4 dorms. (2 suítes) ou 3 e 2 suítes<br>10 min. do Morumbi Shopping';
+//https://www.google.com/maps?ll=-23.650164,-46.671402&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Rua+das+Flechas,+484+-+Jardim+Prud%C3%AAncia+S%C3%A3o+Paulo+-+SP+04364-030
+const mGreen30 = L.marker([-23.650164,-46.671402], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//Verdana Jardim Prudência Mall - Sem endereço
+
+
+//Saiba mais sobre futuro lançamento
+descr_empree = 'Futuro lançamento<br>Rua Dr. Gentil Leite Martins, 300 - São Paulo - SP';
+//https://www.google.com/maps?ll=-23.647272,-46.672861&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Dr.+Gentil+Leite+Martins,+300+-+Jardim+Prud%C3%AAncia+S%C3%A3o+Paulo+-+SP+04648-001
+const mGreen31 = L.marker([-23.647272,-46.672861], {icon: iconBreveLancamento}).bindPopup(descr_empree).addTo(map);
+
+//Scenario Jd Prudência
+descr_empree = 'Scenario Jd Prudência - Portfólio<br>R. dos Cafezais, 420 - São Paulo - SP<br>3 Dorms.';
+//https://www.google.com/maps?ll=-23.648883,-46.670879&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+dos+Cafezais,+420+-+Vila+Santa+Catarina+S%C3%A3o+Paulo+-+SP+04364-000
+const mGreen32 = L.marker([-23.648883,-46.670879], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+//Unità Jd. Prudência
+descr_empree = 'Unità Jd. Prudência - Portfólio<br>Rua das Flechas, 649 - Jardim Prudência<br>2 e 3 Dorms';
+//https://www.google.com/maps/place/Rua+das+Flechas,+649+-+Jardim+Prud%C3%AAncia,+S%C3%A3o+Paulo+-+SP,+04364-030/@-23.651366,-46.670572,16z/data=!4m6!3m5!1s0x94ce5075ff9abe5b:0x75daa251047ee2da!8m2!3d-23.6513665!4d-46.6705718!16s%2Fg%2F11gr6df223?hl=pt-BR&entry=ttu
+const mGreen33 = L.marker([-23.651366,-46.670572], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+//Ventura Jd Prudência
+descr_empree = 'Ventura Jd Prudência - Portfólio<br>R. dos Cafezais, 322 - São Paulo - SP<br>2 Dorms.';
+//https://www.google.com/maps/place/Av.+Interlagos,+2-890+-+Jardim+Marajoara,+S%C3%A3o+Paulo+-+SP,+04660-000/@-23.647885,-46.671361,16z/data=!4m6!3m5!1s0x94ce500d771b9279:0x922d8dd83fd5a072!8m2!3d-23.6612873!4d-46.6794586!16s%2Fg%2F11c0rq38wp?hl=pt-BR&entry=ttu
+const mGreen34 = L.marker([-23.647885,-46.671361], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+
+
+//Futuro lançamento localizado no bairro da Vila Mariana
+descr_empree = 'Futuro lançamento localizado no bairro da Vila Mariana<br>Rua Santa Cruz, 2285 - São Paulo - SP';
+//https://www.google.com/maps/place/R.+Santa+Cruz,+2285+-+Vila+Mariana,+S%C3%A3o+Paulo+-+SP,+04121-002/@-23.602579,-46.616623,16z/data=!4m6!3m5!1s0x94ce5bbec6e7e5af:0xca38673c62ab9519!8m2!3d-23.6025792!4d-46.6166231!16s%2Fg%2F11cs885fcr?hl=pt-BR&entry=ttu
+const mGreen36 = L.marker([-23.602579,-46.616623], {icon: iconBreveLancamento}).bindPopup(descr_empree).addTo(map);
+
+
+
+
+
+
+//Le Monde - Santo André
+descr_empree = 'Le Monde - Portfólio<br>R. Venezuela, 251 - Vila Assunção, Santo André - SP,<br>63, 83, 115m²<br>3 suítes I 3 e 2 dorms. (1 suíte)<br>400 metros do shopping ABC Mappin';
+//https://www.google.com/maps?ll=-23.664353,-46.531031&z=18&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Venezuela,+251+-+Vila+Assun%C3%A7%C3%A3o+Santo+Andr%C3%A9+-+SP+09030-310
+const mGreen39 = L.marker([-23.664353,-46.531031], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+//Harmonia Residencial
+descr_empree = 'Harmonia Residencial - Portfólio<br>R. Jacaracanga, 255 - Vila Formosa, São Paulo<br>3 Dorms.';
+//https://www.google.com/maps?ll=-23.568275,-46.550374&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Jacaracanga,+255+-+Vila+Formosa+S%C3%A3o+Paulo+-+SP+03358-140
+const mGreen40 = L.marker([-23.568275,-46.550374], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+//Momento Boulevard Club
+descr_empree = 'Momento Boulevard Club - Portfólio<br>Rua Oswaldo Arouca, 646 - Vila Formosa<br><br>3 Dorms.';
+//https://www.google.com/maps?ll=-23.562281,-46.537106&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Rua+Oswaldo+Arouca,+646+-+Vila+Formosa+S%C3%A3o+Paulo+-+SP+03363-000
+const mGreen41 = L.marker([-23.562281,-46.537106], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+//Vereda Vila Carrão
+descr_empree = 'Vereda Vila Carrão - Portfólio<br>Rua Oswaldo Arouca, 507 - Vila Formosa<br>2 e 3 Dorms';
+//https://www.google.com/maps/place/Rua+Oswaldo+Arouca,+507+-+Vila+Formosa,+S%C3%A3o+Paulo+-+SP,+03363-000/@-23.561751,-46.538091,16z/data=!4m6!3m5!1s0x94ce5ddcd80a5ebb:0xf81753bafbf892a7!8m2!3d-23.5617514!4d-46.5380914!16s%2Fg%2F11c1jmdg19?hl=pt-BR&entry=ttu
+const mGreen42 = L.marker([-23.561751,-46.538091], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+//Vista di Trento
+descr_empree = 'Vista di Trento - Portfólio<br>R. Nova Trento, 147 - Vila Formosa<br>2 Dorms.';
+//https://www.google.com/maps/place/R.+Nova+Trento,+147+-+Vila+Formosa,+S%C3%A3o+Paulo+-+SP,+03366-020/@-23.563866,-46.534866,16z/data=!4m6!3m5!1s0x94ce5de9cdc6b087:0x5580a74c0cbb0a92!8m2!3d-23.5638661!4d-46.5348663!16s%2Fg%2F11c21bz4yh?hl=pt-BR&entry=ttu
+const mGreen43 = L.marker([-23.563866,-46.534866], {icon: iconPortfolio}).bindPopup(descr_empree).addTo(map);
+
+//Walk Belém Smart by Diálogo - Lançamento
+descr_empree = 'Walk Belém Smart by Diálogo - Lançamento<br>Av. Álvaro Ramos, 574 - Quarta Parada<br>26 a 39m²<br>2 dorms. | 1 suíte<br>A 100m da Estação Belém';
+//https://www.google.com/maps/place/Av.+%C3%81lvaro+Ramos,+574+-+Quarta+Parada,+S%C3%A3o+Paulo+-+SP/@-23.543612,-46.587053,16z/data=!4m5!3m4!1s0x94ce5ece587775a1:0x76595d5233f2f712!8m2!3d-23.5436121!4d-46.5870533?hl=pt-BR&entry=ttu
+const mGreen44 = L.marker([-23.543612,-46.587053], {icon: iconLancamento}).bindPopup(descr_empree).addTo(map);
+
+
+
+//////// NEW ////////
+//	Grand High Residences Alto da Boa Vista	Alto da Boa Vista	Breve lançamento	• 3 e 4 dorms. (c/ suítes), 4 suítes • 4 suítes
+descr_empree =  'Grand High Residences Alto da Boa Vista - Breve lançamento<br>Av. Adolfo Pinheiro, 1912 - Santo Amaro<br>97 a 184m²<br>3 e 4 dorms. (c/ suítes), 4 suítes<br>Tenha a melhor vista da região.';
+
+//	Grand Club Home Spaces Alto da Boa Vista
+descr_empree += '<br><br>Grand Club Home Spaces Alto da Boa Vista - Breve lançamento<br>Av. Adolfo Pinheiro, 1912 - Santo Amaro<br>25 a 68m²<br>1 a 3 dorms. (1 suíte) | Studios<br>A vista mais verde do Alto da Boa Vista.';
+//https://www.google.com/maps/place/Av.+Adolfo+Pinheiro,+1912+-+Santo+Amaro,+S%C3%A3o+Paulo+-+SP,+04734-003/@-23.637828,-46.69539,16z/data=!4m6!3m5!1s0x94ce50f19a9758b5:0x575b76ce2033f5e!8m2!3d-23.6378279!4d-46.6953899!16s%2Fg%2F11c0yfxjph?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyMy4wIKXMDSoASAFQAw%3D%3D
+const mIcon001 = L.marker([-23.637828,-46.69539], {icon: iconBreveLancamento}).bindPopup(descr_empree).addTo(map);
+
+
+//	Bosque Diálogo Jd. Prudência	Jardim Prudência	Breve lançamento	• 1 suíte | 2 e 3 dorms. (1 suíte) | 3 suítes • 3 suítes
+descr_empree = 'Bosque Diálogo Jd. Prudência - Breve lançamento<br>Rua Dr. Gentil Leite Martins, 300 - São Paulo - SP<br>29 a 128m²<br>1 suíte | 2 e 3 dorms. (1 suíte) | 3 suítes<br>1.000m² de bosque privativo e um lazer de clube completo integrado ao verde.';
+//https://www.google.com/maps?ll=-23.647272,-46.672861&z=14&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Dr.+Gentil+Leite+Martins,+300+-+Jardim+Prud%C3%AAncia+S%C3%A3o+Paulo+-+SP+04648-001
+const mIcon002 = L.marker([-23.647272,-46.672861], {icon: iconBreveLancamento}).bindPopup(descr_empree).addTo(map);
+
+//	Paseo Santa Cruz	Alto do Ipiranga	Em construção	
+//https://www.google.com/maps/place/R.+Santa+Cruz,+2360+-+Vila+Mariana,+S%C3%A3o+Paulo+-+SP,+04122-002/@-23.602802,-46.616036,16z/data=!4m6!3m5!1s0x94ce5bbe94162e39:0x2c312d1923d20bf2!8m2!3d-23.6028019!4d-46.616036!16s%2Fg%2F11bw3_4gxb?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyMy4wIKXMDSoASAFQAw%3D%3D
+descr_empree = 'Paseo Santa Cruz - Em construção<br>R. Santa Cruz, 2360 - Vila Mariana<br>28, 67 e 87m²<br>1, 2 e 3 dorms. (1 suíte)<br>A 350m* da Estação Alto do Ipiranga';
+const mIcon003 = L.marker([-23.602802,-46.616036], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+//	Walk Alto do Ipiranga	Alto do Ipiranga	Em construção	• 2 e 3 dorms. • (1 suíte)
+descr_empree = 'Walk Alto do Ipiranga - Em construção<br>Av. Dr. Gentil de Moura, 186 - Ipiranga<br>71 e 95m²<br>2 e 3 dorms. (1 suíte)<br>A 70m da estação Alto do Ipiranga';
+//https://www.google.com/maps?ll=-23.602672,-46.613066&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Dr.+Gentil+de+Moura,+186+-+Ipiranga+S%C3%A3o+Paulo+-+SP
+const mIcon004 = L.marker([-23.602672,-46.613066], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+//	Walk Alto do Ipiranga Offices	Alto do Ipiranga	Em construção	Offices
+descr_empree = 'Walk Alto do Ipiranga Offices - Em construção<br>Av. Dr. Gentil de Moura, 186 - Ipiranga<br>29 a 62m²<br>A 70m da estação Alto do Ipiranga';
+//https://www.google.com/maps?ll=-23.602672,-46.613066&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Dr.+Gentil+de+Moura,+186+-+Ipiranga+S%C3%A3o+Paulo+-+SP
+const mIcon005 = L.marker([-23.602672,-46.613066], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+
+//	Club Station Belém	Belém	Em construção	• 2 e 3 dorms. (1 suíte)
+descr_empree = 'Club Station Belém - Em construção<br>R. Padre Adelino, 303 - Quarta Parada<br>64 e 87m²<br>2 e 3 dorms. (1 suíte)<br>A 350m da estação Belém';
+
+//	Club Station Belém Mall	Belém	Em construção	Mall
+descr_empree += '<br><br>Club Station Belém Mall - Em construção<br>Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.';
+
+//	Club Station Belém Offices	Belém	Em construção	Offices
+descr_empree += '<br><br>Club Station Belém Offices - Em construção<br>Salas comerciais a partir de 87m²<br>A 350m da estação Belém';
+//https://www.google.com/maps?ll=-23.545362,-46.591063&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Padre+Adelino,+303+-+Quarta+Parada+S%C3%A3o+Paulo+-+SP+03303-000
+const mIcon006 = L.marker([-23.545362,-46.591063], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+
+//	Parque Diálogo Padre Adelino Home	Belém	Em construção	• 2 e 3 dorms (1 suíte) - 3 suítes
+descr_empree = 'Parque Diálogo Padre Adelino Home - Em construção<br>R. Padre Adelino, 550 - Quarta Parada<br>75 a 125m²<br>2 e 3 dorms (1 suíte) - 3 suítes<br>A 110m da Estação Belém';
+
+//	Parque Diálogo Padre Adelino Smart	Belém	Em construção	• Studios - 1 suíte - 2 dorms.
+descr_empree += '<br><br>Club Station Belém Offices - Em construção<br>30 a 61m²<br>Studios - 1 suíte - 2 dorms.<br>A 110m da Estação Belém';
+//https://www.google.com/maps?ll=-23.545144,-46.588965&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Padre+Adelino,+550+-+Quarta+Parada+S%C3%A3o+Paulo+-+SP+03303-000
+const mIcon007 = L.marker([-23.545144,-46.588965], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+
+//	Retrato by Diálogo	Brooklin	Em construção	• 2 e 3 dorms. (1 suíte) e 2 dorms. • 2 e 3 dorms. (1 suíte)
+descr_empree = 'Retrato by Diálogo - Em construção<br>Av. Santo Amaro, 5350 - Santo Amaro<br>50, 71 e 94m²<br>2 e 3 dorms. (1 suíte) e 2 dorms.<br>400m da Estação Brooklin';
+
+//	Retrato by Diálogo Offices - Em construção	Offices
+descr_empree += '<br><br>Retrato by Diálogo Offices - Em construção<br>Salas comerciais<br>400m da Estação Brooklin';
+
+//	Retrato by Diálogo Mall	Brooklin - Em construção	Mall
+descr_empree += '<br><br>Retrato by Diálogo Mall - Em construção<br>Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.';
+//https://www.google.com/maps/place/Av.+Santo+Amaro,+5350+-+Santo+Amaro,+S%C3%A3o+Paulo+-+SP,+04702-000/@-23.62933,-46.689729,16z/data=!4m6!3m5!1s0x94ce5093556fdff3:0xe700d1824788b2d3!8m2!3d-23.6293301!4d-46.689729!16s%2Fg%2F11jfgt0d90?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyMy4wIKXMDSoASAFQAw%3D%3D
+const mIcon008 = L.marker([-23.62933,-46.689729], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+
+//	Grand Metropolitan Butantã	Butantã	Em construção	
+descr_empree = 'Grand Metropolitan Butantã - Em construção<br>R. Camargo, 34 - Butantã<br>73, 90 e 120m²<br>3 suítes ou 2 e 3 dorms. (1 suíte)<br>350 metros da estação Butantã';
+//	Grand Metropolitan Butantã Studios	Butantã	Em construção	
+descr_empree += '<br><br>Grand Metropolitan Butantã Studios	- Em construção<br>25 a 31m²<br>350 metros do Metrô Butantã';
+//	Grand Metropolitan Butantã Offices	Butantã	Em construção	Offices
+descr_empree += '<br><br>Grand Metropolitan Butantã Offices	- Em construção<br>Salas comerciais<br>350 metros da estação Butantã';
+//https://www.google.com/maps?ll=-23.573687,-46.709977&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Camargo,+34+-+Butant%C3%A3+S%C3%A3o+Paulo+-+SP+05510-050
+const mIcon009 = L.marker([-23.573687,-46.709977], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+
+//	Monã The Grand Lodge	Moema	Em construção	• 3 ou 4 suítes
+descr_empree = 'Monã The Grand Lodge<br>Av. Indianópolis, 624 - Indianópolis<br>172 a 284m²<br>3 ou 4 suítes<br>Mobilidade saudável para a rotina urbana.';
+//https://www.google.com/maps/place/Av.+Indian%C3%B3polis,+624+-+Indian%C3%B3polis,+S%C3%A3o+Paulo+-+SP,+04062-001/@-23.604279,-46.654441,16z/data=!4m6!3m5!1s0x94ce5a1711644fc1:0x2fd9e6912227ac2c!8m2!3d-23.6042788!4d-46.6544412!16s%2Fg%2F11snytlmc6?hl=pt-BR&entry=ttu
+const mIcon010 = L.marker([-23.604279,-46.654441], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+//	Okena Moema Suítes	Moema	Em construção	• 1 Suíte
+descr_empree = 'Okena Moema Suítes - Em construção<br>Residências de luxo em nova dimensão.<br>Alameda dos Anapurus, 423 - Indianópolis, São Paulo<br>37 a 41m²<br>1 Suíte';
+//https://www.google.com/maps/place/Alameda+dos+Anapurus,+423+-+Indian%C3%B3polis,+S%C3%A3o+Paulo+-+SP,+04087-000/@-23.604156,-46.654973,16z/data=!4m6!3m5!1s0x94ce5a173f7f4fb9:0x186c4bd58f31c22!8m2!3d-23.6041559!4d-46.6549729!16s%2Fg%2F11c244rmh1?hl=pt-BR&entry=ttu
+const mIcon011 = L.marker([-23.604156,-46.654973], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+//	Madre 914 Mooca	Mooca	Em construção	• 1 a 3 dorms. (1 suíte), 3 suítes
+descr_empree = 'Madre 914 Mooca - Em construção<br>Rua Madre de Deus, 914 - São Paulo - SP<br>25 a 128m²<br>1 a 3 dorms. (1 suíte), 3 suíte';
+//https://www.google.com/maps?ll=-23.56436,-46.594988&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Me.+de+Deus,+914+-+Mooca+S%C3%A3o+Paulo+-+SP+03119-001
+const mIcon012 = L.marker([-23.56436,-46.594988], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+//	Praça Diálogo Patriarca	Patriarca	Em construção	• 2 e 3 dorms. • 3 suítes
+descr_empree = 'Praça Diálogo Patriarca<br>R. Itaocara, 51 - Cidade Patriarca<br>25 a 109m²<br>2 e 3 dorms. (1 suíte), 3 suítes e Studios<br>A 160m da Estação Patriarca';
+//https://www.google.com/maps?ll=-23.53076,-46.50449&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Itaocara,+51+-+Cidade+Patriarca+S%C3%A3o+Paulo+-+SP+03551-030
+const mIcon013 = L.marker([-23.53076,-46.50449], {icon: iconPronto}).bindPopup(descr_empree).addTo(map);
+
+
+//	Home Resort Penha	Penha	Em construção	• 3 suítes, 2 e 3 dorms. (1 suíte) • 1 ou 3 suítes
+descr_empree =  'Home Resort Penha - Em construção<br>R. Dr. Suzano Brandão, 1088 - Vila Aricanduva<br>67, 84, 92, 108m²<br>3 suítes, 2 e 3 dorms. (1 suíte)<br>800 metros da estação Penha';
+
+//	Home Resort Penha Smart	Penha	Em construção	• 1 suíte e Studio
+descr_empree += '<br><br>Home Resort Penha Smart - Em construção<br>26 e 27m²<br>1 suíte e Studio<br>800 metros da estação Penha';
+
+//	Home Resort Penha Mall	Penha	Em construção	Mall
+descr_empree += '<br><br>Home Resort Penha Mall - Em construção<br>Traga o seu negócio para um Diálogo Mall. Consulte opções de metragem.';
+//https://www.google.com/maps/place/R.+Dr.+Suzano+Brand%C3%A3o,+1088+-+Vila+Aricanduva,+S%C3%A3o+Paulo+-+SP,+03502-000/@-23.53482,-46.537125,16z/data=!4m6!3m5!1s0x94ce5e6aecf1db67:0x2a5a54d2d402da2f!8m2!3d-23.5348201!4d-46.5371248!16s%2Fg%2F11f53pkdhl?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyMy4wIKXMDSoASAFQAw%3D%3D
+const mIcon014 = L.marker([-23.53482,-46.537125], {icon: iconConstrucao}).bindPopup(descr_empree).addTo(map);
+
+
+//	Inspire Diálogo Home Resort	Pirituba	Em construção	• 1, 2 e 3 dorms. (1 suíte), 3 suítes
+//	High Line Tatuapé	Tatuapé	Em construção	• 2 e 3 dorms.  • (3 suítes)
+
+//	Landmark Tatuapé by Diálogo Studios	Tatuapé	Em construção	• Studios
+//	Landmark Tatuapé by Diálogo	Tatuapé	Em construção	• 2 e 3 dorms. • (1 suíte) - 3 suítes
+
+//	Vista Tatuapé Boulevard	Tatuapé	Em construção	• 2 e 3 dorms. (1 suíte), 3 suítes e Studios
+//	Vitrine Tatuapé Condomínio Clube	Tatuapé	Em construção	• 2 e 3 dorms. • 3 suítes
+//	Club Station Parque Vila Ema	Vila Ema	Em construção	• 1 a 3 dorms.  • 1 suíte
+
+//	Quadra Diálogo Home Club Smart	Vila Ema	Em construção	• 2 dorms.  • 1 suíte
+//	Quadra Diálogo Home Club	Vila Ema	Em construção	• 2 e 3 dorms.  • (1 suíte)
+
+//	Varanda Vila Ema	Vila Ema	Em construção	• 2 e 3 dorms. (1 suíte)
+
+//	Home Resort Astorga by Diálogo Offices	Vila Guilhermina	Em construção	Offices
+//	Home Resort Astorga by Diálogo Smart	Vila Guilhermina	Em construção	• 1 suíte
+//	Home Resort Astorga by Diálogo	Vila Guilhermina	Em construção	• 2 e 3 dorms (1 suíte) - 3 suítes
+
+//	Oásis Condomínio Clube	Vila Guilhermina	Em construção	• 2 e 3 dorms. (1 suíte)
+//	Grand Home Club Mall	Vila Matilde	Em construção	Mall
+//	DOM 564 Praça Vila Nova	Vila Nova Conceição	Em construção	• 1 ou 2 suítes
+//	Rua Padre Adelino	Belém	Futuro lançamento	
+//	Rua Sapetuba	Butantã	Futuro lançamento	
+//	Alameda Fernão Cardim	Jardim Paulista	Futuro lançamento	
+//	Rua Gentil Leite	Jardim Prudência	Futuro lançamento	
+//	Rua Padre Raposo	Mooca	Futuro lançamento	
+//	Av. Álvaro Ramos	Quarta Parada	Futuro lançamento	
+//	Rua Dr. Coryntho Baldoíno	Tatuapé	Futuro lançamento	
+//	Rua Fernandes Pinheiros	Tatuapé	Futuro lançamento	
+//	Conselheiro Carrão	Vila Carrão	Futuro lançamento	
+//	Av Vila Ema 5	Vila Ema	Futuro lançamento	
+//	Av. Vila Ema 6	Vila Ema	Futuro lançamento	
+//	Rua Santa Cruz	Vila Mariana	Futuro lançamento	
+//	Rua Chamantá	Vila Prudente	Futuro lançamento	
+
+//	Walk Belém Smart by Diálogo	Belém	Lançamento	• 2 dorms.  • 1 suíte
+//	Walk Belém by Diálogo	Belém	Lançamento	• 2 e 3 dorms.  • (1 suíte)
+
+//	Prisma Condomínio Clube Vila Ema	Vila Ema	Lançamento	• 2 e 3 dorms. • 1 suíte
+//	Vereda São Paulo	Aclimação	Portfólio	
+//	Edição Pinheiros	Brooklin	Portfólio	
+//	Grand Terrace Aclimação	Cambuci	Portfólio	
+//	Edição Jardins	Jardim Paulista	Portfólio	
+//	Scenario Jd Prudência	Jardim Prudência	Portfólio	
+//	Unità Jd. Prudência	Jardim Prudência	Portfólio	
+//	Ventura Jd Prudência	Jardim Prudência	Portfólio	
+//	Movin Aclimação	Jardim da Glória	Portfólio	
+//	Allegro	Mooca	Portfólio	
+//	Residencial Inspiratto	Mooca	Portfólio	
+//	Vereda Alto da Mooca	Mooca	Portfólio	
+//	Club Station	Penha	Portfólio	
+//	Lavie Santana	Santana	Portfólio	
+//	Santana Private	Santana	Portfólio	
+//	Varandas Santo André	Santo André	Portfólio	
+//	My São Caetano	São Caetano	Portfólio	
+//	SYNC São Caetano	São Caetano	Portfólio	
+//	Varandas Santa Paula	São Caetano	Portfólio	
+//	Aquarela	São Lucas	Portfólio	
+//	Boulevard dos Cristais	Tatuapé	Portfólio	
+//	Ed. Valentina	Tatuapé	Portfólio	
+//	Landscape Tatuapé	Tatuapé	Portfólio	
+//	Residencial Petrus	Tatuapé	Portfólio	• 2 e 3 Dorms.
+//	Urban Home Tatuapé	Tatuapé	Portfólio	
+//	Vereda Parque Tuiuti	Tatuapé	Portfólio	
+//	Vereda Tatuapé	Tatuapé	Portfólio	
+//	Vitório Tatuapé	Tatuapé	Portfólio	
+//	Brise Vergueiro	Vergueiro	Portfólio	
+//	Residencial Belatto	Vila Bertioga	Portfólio	
+//	Ed. Sophia	Vila Carrão	Portfólio	
+//	The Address	Vila Carrão	Portfólio	
+//	Varandas Vila Carrão	Vila Carrão	Portfólio	
+//	Vereda Reserva Vila Carrão	Vila Carrão	Portfólio	
+//	Vital Vila Carrão	Vila Carrão	Portfólio	
+//	Reserva Vila Ema	Vila Ema	Portfólio	
+//	Harmonia Residencial	Vila Formosa	Portfólio	
+//	Momento Boulevard Club	Vila Formosa	Portfólio	
+//	Vereda Vila Carrão	Vila Formosa	Portfólio	
+//	Vista di Trento	Vila Formosa	Portfólio	
+//	Vicino Passo da Pátria	Vila Leopoldina	Portfólio	
+//	Tradição Vila Matilde	Vila Matilde	Portfólio	• 2 e 3 Dorms. • 1 Suíte(s)
+//	Villa Funchal Bay Apartments	Vila Olímpia	Portfólio	
+//	Metropolitan Vila Prudente	Vila Prudente	Portfólio	
+//	Reserva Chamantá	Vila Prudente	Portfólio	
+//	Varanda Vila Romana	Vila Romana	Portfólio	• 1 Suíte
+//	Reserva Saúde	Vila da Saúde	Portfólio	
+//	Landscape Alto da Boa Vista Mall	Alto da Boa Vista	Pronto para investir	Mall
+//	Merit Santa Cruz Mall	Alto do Ipiranga	Pronto para investir	Mall
+//	Blem Home Resort Mall	Belém	Pronto para investir	Mall
+//	Forma287 Mall	Belém	Pronto para investir	Mall
+//	High Belém Mall	Belém	Pronto para investir	Mall
+//	Móbile Vida e Lazer Mall	Belém	Pronto para investir	Mall
+//	High Jd. Prudência Mall	Jardim Prudência	Pronto para investir	Mall
+//	Verdana Jardim Prudência Mall	Jardim Prudência	Pronto para investir	Mall
+//	High Mooca Mall	Mooca	Pronto para investir	Mall
+//	The Place Mall	Mooca	Pronto para investir	Mall
+//	The Place Offices	Mooca	Pronto para investir	Offices
+//	D/Home Tatuapé Mall	Tatuapé	Pronto para investir	Mall
+//	Exclusive Tatuapé Mall	Tatuapé	Pronto para investir	Mall
+//	Forma Tatuapé Mall	Tatuapé	Pronto para investir	Mall
+//	Linea Home Resort Tatuapé Mall	Tatuapé	Pronto para investir	Mall
+//	Praça Tatuapé Mall	Tatuapé	Pronto para investir	Mall
+//	Metropolitan Tucuruvi Mall	Tucuruvi	Pronto para investir	Mall
+//	Next Astorga Condomínio Clube Mall	Vila Guilhermina	Pronto para investir	Mall
+
+//	GranDiálogo Vila Matilde - Gran Offices	Vila Matilde	Pronto para investir	Offices
+//	GranDiálogo Vila Prudente - Gran Mall	Vila Prudente	Pronto para investir	Mall
+//	GranDiálogo Vila Prudente - Gran Offices	Vila Prudente	Pronto para investir	Offices
+
+//	Smart Studios Santa Cruz	Alto do Ipiranga	Pronto para morar ou investir	
+//	Blem Studios	Belém	Pronto para morar ou investir	• Studio
+//	Smart Studios Belém	Belém	Pronto para morar ou investir	• Studio
+//	Smart Home Butantã	Butantã	Pronto para morar ou investir	
+//	Verdana Suites	Jardim Prudência	Pronto para morar ou investir	
+//	Praça Tatuapé Studios	Tatuapé	Pronto para morar ou investir	• Studio
+//	GranDiálogo Vila Matilde - Gran Smart	Vila Matilde	Pronto para morar ou investir	• Studio
+//	Landscape Alto da Boa Vista	Alto da Boa Vista	Pronto para morar	• 3 suítes - 3 e 2 dorms. (1 suíte)
+//	High Santa Cruz	Alto do Ipiranga	Pronto para morar	
+//	Merit Santa Cruz	Alto do Ipiranga	Pronto para morar	
+//	Blem Home Resort	Belém	Pronto para morar	• 2 e 3 dorms. 1 ou 3 suítes
+//	Forma287	Belém	Pronto para morar	• 1 ou 3 suítes
+//	High Belém	Belém	Pronto para morar	
+//	Móbile Vida e Lazer	Belém	Pronto para morar	
+//	Walk SP	Butantã	Pronto para morar	• Studios, 1 e 2 dorms. (suíte)
+//	Metropolitan Freguesia do Ó	Freguesia do Ó	Pronto para morar	
+//	Le Parc Itaim	Itaim Bibi	Pronto para morar	
+//	High Jd Prudência	Jardim Prudência	Pronto para morar	
+//	Verdana Jardim Prudência	Jardim Prudência	Pronto para morar	
+//	High Mooca	Mooca	Pronto para morar	
+//	The Place	Mooca	Pronto para morar	
+//	Le Monde	Santo André	Pronto para morar	• 3 suítes I 3 e 2 dorms. (1 suíte)
+//	Le Quartier	Santo André	Pronto para morar	• 3 suítes • 3 e 4 dorms. (com suítes)
+//	Absoluto Tatuapé	Tatuapé	Pronto para morar	• 4 dorms • 3 suítes
+//	D/Home Tatuapé	Tatuapé	Pronto para morar	• 3 suítes
+//	Exclusive Tatuapé	Tatuapé	Pronto para morar	
+//	Forma Tatuapé	Tatuapé	Pronto para morar	
+//	HUB Home Club Tatuapé	Tatuapé	Pronto para morar	
+//	High Park Tatuapé	Tatuapé	Pronto para morar	• 3 e 4 dorms. (1 a 3 suítes) • 3 suítes
+
+//	Linea Home Resort Studios	Tatuapé	Pronto para morar	
+//	Linea Home Resort Tatuapé	Tatuapé	Pronto para morar	
+
+//	Praça Tatuapé	Tatuapé	Pronto para morar	
+
+//	Metropolitan Tucuruvi Studios	Tucuruvi	Pronto para morar	• Studio
+//	Metropolitan Tucuruvi	Tucuruvi	Pronto para morar	
+
+//	Dimension Prime Santo André	Vila Gilda	Pronto para morar	
+//	The Address Santo André	Vila Gilda	Pronto para morar	
+//	Next Astorga Condomínio Clube	Vila Guilhermina	Pronto para morar	
+//	Vista Parque Villa Lobos	Vila Leopoldina	Pronto para morar	
+//	GranDiálogo Vila Matilde - Gran Home Club	Vila Matilde	Pronto para morar	
+//	Club Station Vila Prudente	Vila Prudente	Pronto para morar	
+//	Diálogo Panoramico Mall	Vila Prudente	Pronto para morar	Mall
+//	Diálogo Panoramico Offices	Vila Prudente	Pronto para morar	Offices
+
+//	GranDiálogo Vila Prudente - Gran Home Club	Vila Prudente	Pronto para morar	
+//	GranDiálogo Vila Prudente - Gran Smart	Vila Prudente	Pronto para morar	
+
+//	Panoramico Home	Vila Prudente	Pronto para morar	
+//	Panoramico Smart	Vila Prudente	Pronto para morar	
+
+
+</script>
+
+
+<!-- -23.53872, -46.57684 Escritorio -->
+</body>
+</html>
+
+
+
