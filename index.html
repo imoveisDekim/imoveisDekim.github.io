@@ -85,11 +85,11 @@
 	});	
 	
 	const iconPronto = new LeafIcon({iconUrl: 'google_maps_pin_PNG26.png'});
-	const iconPortfolio = new LeafIcon({iconUrl: 'google_maps_pin_gray.png'});
-	const iconFuturoLancamento = new LeafIcon({iconUrl: 'google_maps_pin_lightGreen.png'});
+	const iconPortfolio = new LeafIcon({iconUrl: 'google_maps_pin_lightOrange.png'});
+	const iconFuturoLancamento = new LeafIcon({iconUrl: 'google_maps_pin_Red.png'});
 	const iconBreveLancamento = new LeafIcon({iconUrl: 'google_maps_pin_lightBlue.png'});
-	const iconLancamento = new LeafIcon({iconUrl: 'google_maps_pin_Blue.png'});
-	const iconConstrucao = new LeafIcon({iconUrl: 'google_maps_pin_Green.png'});
+	const iconLancamento = new LeafIcon({iconUrl: 'google_maps_pin_Green.png'});
+	const iconConstrucao = new LeafIcon({iconUrl: 'google_maps_pin_Blue.png'});
 	const iconUndefined = new LeafIcon({iconUrl: 'google_maps_pin_undefined.png'});
 
 
@@ -303,21 +303,30 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 arrEmpr[arrIndex][9] = L.marker([-23.528644,-46.513626], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Grand Home Club Mall|Vila Matilde|Em construção|Mall");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("DOM 564 Praça Vila Nova|Vila Nova Conceição|Em construção|• 1 ou 2 suítes");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Rua Padre Adelino|Belém|Futuro lançamento|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Rua Sapetuba|Butantã|Futuro lançamento|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Alameda Fernão Cardim|Jardim Paulista|Futuro lançamento|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("DOM 564 Praça Vila Nova|Vila Nova Conceição|Em construção|• 1 ou 2 suítes");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps/place/R.+Domingos+Fernandes,+564+-+Vila+Nova+Concei%C3%A7%C3%A3o,+S%C3%A3o+Paulo+-+SP,+04509-011/@-23.59186,-46.670572,16z/data=!4m6!3m5!1s0x94ce57562a711187:0x181c9b4f48c90b5c!8m2!3d-23.5918597!4d-46.6705719!16s%2Fg%2F11bw44d6fh?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
+arrEmpr[arrIndex][9] = L.marker([-23.59186,-46.670572], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Rua Padre Adelino|Belém|Futuro lançamento|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.54397,-46.584876&z=14&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Padre+Adelino,+957+-+Quarta+Parada+S%C3%A3o+Paulo+-+SP+03303-000
+arrEmpr[arrIndex][9] = L.marker([-23.54397,-46.584876], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Rua Sapetuba|Butantã|Futuro lançamento|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps/place/R.+Sapetuba+-+Butant%C3%A3,+S%C3%A3o+Paulo+-+SP/@-23.5742605,-46.7121318,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce56fff819cf39:0x97647d591f79885b!8m2!3d-23.5742654!4d-46.7095569!16s%2Fg%2F1ymtrjq3d?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
+arrEmpr[arrIndex][9] = L.marker([-23.5742605,-46.7121318], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Alameda Fernão Cardim|Jardim Paulista|Futuro lançamento|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps/place/Alameda+Fern%C3%A3o+Cardim,+75+-+Jardim+Paulista,+S%C3%A3o+Paulo+-+SP,+01403-020/@-23.569796,-46.652223,14z/data=!4m6!3m5!1s0x94ce59c09675f635:0xa28096259a94272e!8m2!3d-23.5697957!4d-46.652223!16s%2Fg%2F11c2d1mlpp?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
+arrEmpr[arrIndex][9] = L.marker([-23.569796,-46.652223], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Rua Gentil Leite|Jardim Prudência|Futuro lançamento|");
@@ -343,12 +352,17 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps/place/R.+Dr.+Coryntho+Baldo%C3%ADno+Costa,+380+-+Vila+Zilda,+S%C3%A3o+Paulo+-+SP,+03069-070/@-23.536215,-46.563579,16z/data=!4m5!3m4!1s0x94ce5ef1d17c79df:0x3dadb50935d915eb!8m2!3d-23.5362148!4d-46.5635795?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
 arrEmpr[arrIndex][9] = L.marker([-23.536215,-46.563579], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Rua Fernandes Pinheiros|Tatuapé|Futuro lançamento|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Conselheiro Carrão|Vila Carrão|Futuro lançamento|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Rua Fernandes Pinheiros|Tatuapé|Futuro lançamento|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps/place/R.+Fernandes+Pinheiro+-+Tatuap%C3%A9,+S%C3%A3o+Paulo+-+SP,+03308-060/@-23.5416563,-46.5745063,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce5eea36a22a29:0x56176f74c9f9096a!8m2!3d-23.5416612!4d-46.5719314!16s%2Fg%2F1ymx7nhcy?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
+arrEmpr[arrIndex][9] = L.marker([-23.5416563,-46.5745063], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Conselheiro Carrão|Vila Carrão|Futuro lançamento|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.546963,-46.540768&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Conselheiro+Carr%C3%A3o,+2111+-+Vila+Carr%C3%A3o+S%C3%A3o+Paulo+-+SP+03403-002
+arrEmpr[arrIndex][9] = L.marker([-23.546963,-46.540768], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Av Vila Ema 5|Vila Ema|Futuro lançamento|");
@@ -379,9 +393,9 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 arrEmpr[arrIndex][9] = L.marker([-23.577289,-46.586076], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
-arrEmpr[arrIndex][0] = parseTextEmp("Walk Belém by Diálogo|Belém|Lançamento|• 2 e 3 dorms.  • (1 suíte)");
+arrEmpr[arrIndex][0] = parseTextEmp("Walk Belém by Diálogo|Belém|Lançamento|55 a 91m²<br>2 e 3 dorms. (1 suíte)<br>A 100m da Estação Belém)");
 arrEmpr[arrIndex][1] = parseTextEmp("Walk Belém Smart by Diálogo|Belém|Lançamento|• 2 dorms.  • 1 suíte");
-descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+descr_empree = getTextEmp(arrEmpr[arrIndex][0])+'<br><br>'+getTextEmp(arrEmpr[arrIndex][1]);
 //https://www.google.com/maps/place/Av.+%C3%81lvaro+Ramos,+574+-+Quarta+Parada,+S%C3%A3o+Paulo+-+SP/@-23.543612,-46.587053,16z/data=!4m5!3m4!1s0x94ce5ece587775a1:0x76595d5233f2f712!8m2!3d-23.5436121!4d-46.5870533?hl=pt-BR&entry=ttu
 arrEmpr[arrIndex][9] = L.marker([-23.543612,-46.587053], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
@@ -392,18 +406,29 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 arrEmpr[arrIndex][9] = L.marker([-23.580888,-46.557022], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Vereda São Paulo|Aclimação|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Edição Pinheiros|Brooklin|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Grand Terrace Aclimação|Cambuci|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Edição Jardins|Jardim Paulista|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Vereda São Paulo|Aclimação|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.571995,-46.619729&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Gama+Cerqueira,+505+-+Cambuci+S%C3%A3o+Paulo+-+SP+01539-010
+arrEmpr[arrIndex][9] = L.marker([-23.571995,-46.619729], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Edição Pinheiros|Brooklin|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.560737,-46.687349&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Rua+Cardeal+Arcoverde,+1626+-+Pinheiros+S%C3%A3o+Paulo+-+SP+05408-001
+arrEmpr[arrIndex][9] = L.marker([-23.560737,-46.687349], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Grand Terrace Aclimação|Cambuci|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.564345,-46.622897&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Lacerda+Franco,+200+-+Cambuci+S%C3%A3o+Paulo+-+SP+01536-000
+arrEmpr[arrIndex][9] = L.marker([-23.564345,-46.622897], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Edição Jardins|Jardim Paulista|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.569619,-46.651981&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Alameda+Fern%C3%A3o+Cardim,+70+-+Jardim+Paulista+S%C3%A3o+Paulo+-+SP+01403-020
+arrEmpr[arrIndex][9] = L.marker([-23.569619,-46.651981], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Scenario Jd Prudência|Jardim Prudência|Portfólio|");
@@ -448,31 +473,53 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps/place/Rua+Marqu%C3%AAs+de+Valen%C3%A7a,+260+-+Alto+da+Mooca,+S%C3%A3o+Paulo+-+SP,+03182-040/@-23.558288,-46.593369,16z/data=!4m6!3m5!1s0x94ce594cb2883fe1:0xa0697e5d3d216be0!8m2!3d-23.5582881!4d-46.5933692!16s%2Fg%2F11dz57nm07?hl=pt-BR&entry=ttu
 arrEmpr[arrIndex][9] = L.marker([-23.558288,-46.593369], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Club Station|Penha|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.535503,-46.540572&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Dr.+Suzano+Brand%C3%A3o,+720+-+Vila+Aricanduva+S%C3%A3o+Paulo+-+SP+03502-000
+arrEmpr[arrIndex][9] = L.marker([-23.535503,-46.540572], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Club Station|Penha|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Lavie Santana|Santana|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Santana Private|Santana|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Varandas Santo André|Santo André|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("My São Caetano|São Caetano|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("SYNC São Caetano|São Caetano|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Varandas Santa Paula|São Caetano|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Aquarela|São Lucas|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Lavie Santana|Santana|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.491182,-46.638033&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Piracema,+276+-+Santana+S%C3%A3o+Paulo+-+SP+02460-040
+arrEmpr[arrIndex][9] = L.marker([-23.491182,-46.638033], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Santana Private|Santana|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.49754,-46.631507&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Rua+C%C3%B4nego+Manuel+Vaz,+327+-+Santana+S%C3%A3o+Paulo+-+SP+02019-050
+arrEmpr[arrIndex][9] = L.marker([-23.49754,-46.631507], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Varandas Santo André|Santo André|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.677154,-46.535896&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Ibiapava,+80+-+Vila+Apiai+Santo+Andr%C3%A9+-+SP+09185-360
+arrEmpr[arrIndex][9] = L.marker([-23.677154,-46.535896], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("My São Caetano|São Caetano|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.613748,-46.574389&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Baraldi,+668+-+Centro+S%C3%A3o+Caetano+do+Sul+-+SP+09510-010
+arrEmpr[arrIndex][9] = L.marker([-23.613748,-46.574389], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("SYNC São Caetano|São Caetano|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.611754,-46.573597&z=17&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Alagoas,+581+-+Centro+S%C3%A3o+Caetano+do+Sul+-+SP+09521-050
+arrEmpr[arrIndex][9] = L.marker([-23.611754,-46.573597], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Varandas Santa Paula|São Caetano|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.620562,-46.566493&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Dr.+Augusto+de+Toledo,+769+-+Santa+Paula+S%C3%A3o+Caetano+do+Sul+-+SP+09540-080
+arrEmpr[arrIndex][9] = L.marker([-23.620562,-46.566493], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Aquarela|São Lucas|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.58381,-46.536002&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Jo%C3%A3o+Rodrigues+Pires,+349+-+S%C3%A3o+Lucas+S%C3%A3o+Paulo+-+SP+03280-050
+arrEmpr[arrIndex][9] = L.marker([-23.58381,-46.536002], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Boulevard dos Cristais|Tatuapé|Portfólio|");
@@ -528,28 +575,47 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps/place/R.+Vit%C3%B3rio+Ramalho,+122+-+Parque+S%C3%A3o+Jorge,+S%C3%A3o+Paulo+-+SP,+03087-080/@-23.531565,-46.562275,16z/data=!4m6!3m5!1s0x94ce5efa8ad6b711:0x7c0deb1be30fabe7!8m2!3d-23.5315654!4d-46.5622751!16s%2Fg%2F11b8zd4z62?hl=pt-BR&entry=ttu
 arrEmpr[arrIndex][9] = L.marker([-23.531565,-46.562275], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Brise Vergueiro|Vergueiro|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps/place/R.+Guanabara,+110+-+Vila+Brasilio+Machado,+S%C3%A3o+Paulo+-+SP,+04288-090/@-23.6099417,-46.6128697,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce5b98e1b5362d:0xbc96aacd3d019be2!8m2!3d-23.6099466!4d-46.6102948!16s%2Fg%2F11csdvmyx8?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
+arrEmpr[arrIndex][9] = L.marker([-23.6099417,-46.6128697], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Brise Vergueiro|Vergueiro|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Residencial Belatto|Vila Bertioga|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Ed. Sophia|Vila Carrão|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("The Address|Vila Carrão|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Varandas Vila Carrão|Vila Carrão|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Vereda Reserva Vila Carrão|Vila Carrão|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Vital Vila Carrão|Vila Carrão|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Residencial Belatto|Vila Bertioga|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.565638,-46.577571&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Campo+Largo,+964+-+Vila+Bertioga+S%C3%A3o+Paulo+-+SP+03186-010
+arrEmpr[arrIndex][9] = L.marker([-23.565638,-46.577571], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Ed. Sophia|Vila Carrão|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.544799,-46.545425&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Conselheiro+Carr%C3%A3o,+1563+-+Vila+Carr%C3%A3o+S%C3%A3o+Paulo+-+SP+03403-001
+arrEmpr[arrIndex][9] = L.marker([-23.544799,-46.545425], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("The Address|Vila Carrão|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.550354,-46.541792&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Renato+Rinaldi,+502+-+Vila+Carr%C3%A3o+S%C3%A3o+Paulo+-+SP+03426-000
+arrEmpr[arrIndex][9] = L.marker([-23.550354,-46.541792], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Varandas Vila Carrão|Vila Carrão|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.556856,-46.524428&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Dezenove+de+Janeiro,+567+-+Vila+Carr%C3%A3o+S%C3%A3o+Paulo+-+SP+03449-000
+arrEmpr[arrIndex][9] = L.marker([-23.556856,-46.524428], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Vereda Reserva Vila Carrão|Vila Carrão|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.555176,-46.5419&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Nhandeara,+80+-+Vila+Carr%C3%A3o+S%C3%A3o+Paulo+-+SP+03424-040
+arrEmpr[arrIndex][9] = L.marker([-23.555176,-46.5419], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Vital Vila Carrão|Vila Carrão|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.554389,-46.52726&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Dezenove+de+Janeiro,+160+-+Vila+Carr%C3%A3o+S%C3%A3o+Paulo+-+SP+03449-000
+arrEmpr[arrIndex][9] = L.marker([-23.554389,-46.52726], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Reserva Vila Ema|Vila Ema|Portfólio|");
@@ -584,10 +650,11 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps/place/R.+Nova+Trento,+147+-+Vila+Formosa,+S%C3%A3o+Paulo+-+SP,+03366-020/@-23.563866,-46.534866,16z/data=!4m6!3m5!1s0x94ce5de9cdc6b087:0x5580a74c0cbb0a92!8m2!3d-23.5638661!4d-46.5348663!16s%2Fg%2F11c21bz4yh?hl=pt-BR&entry=ttu
 arrEmpr[arrIndex][9] = L.marker([-23.563866,-46.534866], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
-
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Vicino Passo da Pátria|Vila Leopoldina|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Vicino Passo da Pátria|Vila Leopoldina|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.522121,-46.731943&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Bela+N%C3%A1poles,+96+-+Vila+Leopoldina+S%C3%A3o+Paulo+-+SP+05085-080
+arrEmpr[arrIndex][9] = L.marker([-23.522121,-46.731943], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Tradição Vila Matilde|Vila Matilde|Portfólio|• 2 e 3 Dorms. • 1 Suíte(s)");
@@ -595,10 +662,11 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps?ll=-23.533014,-46.533876&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Cel.+Pedro+Dias+de+Campos,+877+-+Ch%C3%A1cara+Seis+de+Outubro+S%C3%A3o+Paulo+-+SP+03508-010
 arrEmpr[arrIndex][9] = L.marker([-23.533014,-46.533876], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
-
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Villa Funchal Bay Apartments|Vila Olímpia|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Villa Funchal Bay Apartments|Vila Olímpia|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.594072,-46.688734&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+S%C3%A3o+Tom%C3%A9,+73+-+Vila+Ol%C3%ADmpia+S%C3%A3o+Paulo+-+SP+04551-080
+arrEmpr[arrIndex][9] = L.marker([-23.594072,-46.688734], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Metropolitan Vila Prudente|Vila Prudente|Portfólio|");
@@ -612,13 +680,17 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps/place/Rua+Chamant%C3%A1,+236+-+Vila+Prudente,+S%C3%A3o+Paulo+-+SP,+03127-000/@-23.57362,-46.585591,16z/data=!4m6!3m5!1s0x94ce5c037aeb2683:0xbef852d34c156fb2!8m2!3d-23.5736202!4d-46.5855906!16s%2Fg%2F11c2d5pcm9?hl=pt-BR&entry=ttu
 arrEmpr[arrIndex][9] = L.marker([-23.57362,-46.585591], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Varanda Vila Romana|Vila Romana|Portfólio|• 1 Suíte");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Varanda Vila Romana|Vila Romana|Portfólio|• 1 Suíte");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.523368,-46.70062&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Cat%C3%A3o,+280+-+Vila+Romana+S%C3%A3o+Paulo+-+SP+05049-000
+arrEmpr[arrIndex][9] = L.marker([-23.523368,-46.70062], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Reserva Saúde|Vila da Saúde|Portfólio|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Reserva Saúde|Vila da Saúde|Portfólio|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.619824,-46.607503&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Abagiba,+582+-+Vila+da+Sa%C3%BAde+S%C3%A3o+Paulo+-+SP+04294-000
+arrEmpr[arrIndex][9] = L.marker([-23.619824,-46.607503], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Landscape Alto da Boa Vista|Alto da Boa Vista|Pronto para morar|• 3 suítes - 3 e 2 dorms. (1 suíte)");
@@ -663,12 +735,6 @@ arrEmpr[arrIndex][1] = parseTextEmp("Móbile Vida e Lazer Mall|Belém|Pronto par
 descr_empree = getTextEmp(arrEmpr[arrIndex][0])+"<br><br>"+getTextEmp(arrEmpr[arrIndex][1]);
 //https://www.google.com/maps?ll=-23.545702,-46.586161&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Rua+Serra+da+Bocaina,+547+-+Belenzinho+S%C3%A3o+Paulo+-+SP+03174-000
 arrEmpr[arrIndex][9] = L.marker([-23.541725,-46.592603], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
-
-
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("High Jd. Prudência Mall|Jardim Prudência|Pronto para investir|Mall");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-// CADÊ O ENDEREÇO NO SITE ?
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Verdana Jardim Prudência|Jardim Prudência|Pronto para morar|");
@@ -737,21 +803,39 @@ arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("GranDiálogo Vila Matilde - Gran Home Club|Vila Matilde|Pronto para morar|");
 arrEmpr[arrIndex][1] = parseTextEmp("GranDiálogo Vila Matilde - Gran Smart|Vila Matilde|Pronto para morar ou investir|• Studio");
 arrEmpr[arrIndex][2] = parseTextEmp("GranDiálogo Vila Matilde - Gran Offices|Vila Matilde|Pronto para investir|Offices");
-descr_empree = getTextEmp(arrEmpr[arrIndex][0])+'<br><br>'+getTextEmp(arrEmpr[arrIndex][1])+'<br><br>'+getTextEmp(arrEmpr[arrIndex][2]);
+arrEmpr[arrIndex][3] = parseTextEmp("Grand Home Club Mall|Vila Matilde|Em construção|Mall");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0])+'<br><br>'+getTextEmp(arrEmpr[arrIndex][1])+'<br><br>'+getTextEmp(arrEmpr[arrIndex][2])+'<br><br>'+getTextEmp(arrEmpr[arrIndex][3]);
 //https://www.google.com/maps?ll=-23.533443,-46.52812&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Joaquim+Marra,+110+-+Vila+Matilde+S%C3%A3o+Paulo+-+SP+03514-000
 arrEmpr[arrIndex][9] = L.marker([-23.533443,-46.52812], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 
-
-
-
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("GranDiálogo Vila Prudente - Gran Home Club|Vila Prudente|Pronto para morar|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps/place/Av.+do+Orat%C3%B3rio,+401+-+Vila+Independencia,+S%C3%A3o+Paulo+-+SP,+03221-000/@-23.582471,-46.560263,16z/data=!4m6!3m5!1s0x94ce5d58a0b9ed1d:0x3d8e808bd4404c44!8m2!3d-23.5824712!4d-46.5602632!16s%2Fg%2F11y55lw5_d?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
+arrEmpr[arrIndex][9] = L.marker([-23.582471,-46.560263], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
-arrEmpr[arrIndex][0] = parseTextEmp("GranDiálogo Vila Prudente - Gran Mall|Vila Prudente|Pronto para investir|Mall");
-arrEmpr[arrIndex][1] = parseTextEmp("GranDiálogo Vila Prudente - Gran Offices|Vila Prudente|Pronto para investir|Offices");
+arrEmpr[arrIndex][0] = parseTextEmp("GranDiálogo Vila Prudente - Gran Smart|Vila Prudente|Pronto para morar|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.582538,-46.560646&z=12&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+do+Orat%C3%B3rio,+291+-+Jardim+Independ%C3%AAncia+(S%C3%A3o+Paulo)+S%C3%A3o+Paulo+-+SP+03221-000
+arrEmpr[arrIndex][9] = L.marker([-23.582538,-46.560646], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("GranDiálogo Vila Prudente - Gran Offices|Vila Prudente|Pronto para investir|Offices");
 descr_empree = getTextEmp(arrEmpr[arrIndex][0])+'<br><br>'+getTextEmp(arrEmpr[arrIndex][1]);
 //https://www.google.com/maps?ll=-23.582538,-46.560646&z=12&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+do+Orat%C3%B3rio,+291+-+Jardim+Independ%C3%AAncia+(S%C3%A3o+Paulo)+S%C3%A3o+Paulo+-+SP+03221-000
 arrEmpr[arrIndex][9] = L.marker([-23.582538,-46.560646], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("GranDiálogo Vila Prudente - Gran Mall|Vila Prudente|Pronto para investir|Mall");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps/place/Av.+Professor+Luiz+Ign%C3%A1cio+Anhaia+Mello,+3500+-+Jardim+Independ%C3%AAncia+(S%C3%A3o+Paulo),+S%C3%A3o+Paulo+-+SP,+03294-100/@-23.5823855,-46.563434,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce5c490ada317b:0x6c4cceecc25bf!8m2!3d-23.5823904!4d-46.5608591!16s%2Fg%2F11bw4nnsds?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
+arrEmpr[arrIndex][9] = L.marker([-23.5823855,-46.563434], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+
+
+
+
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Smart Studios Santa Cruz|Alto do Ipiranga|Pronto para morar ou investir|");
@@ -810,7 +894,8 @@ arrEmpr[arrIndex][9] = L.marker([-23.588586,-46.674608], {icon: getTextStatus(ar
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("High Jd Prudência|Jardim Prudência|Pronto para morar|");
-descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[arrIndex][1] = parseTextEmp("High Jd. Prudência Mall|Jardim Prudência|Pronto para investir|Mall");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0])+'<br>'+getTextEmp(arrEmpr[arrIndex][1]);
 //https://www.google.com/maps?ll=-23.650164,-46.671402&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Rua+das+Flechas,+484+-+Jardim+Prud%C3%AAncia+S%C3%A3o+Paulo+-+SP+04364-030
 arrEmpr[arrIndex][9] = L.marker([-23.650164,-46.671402], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
@@ -819,7 +904,6 @@ arrEmpr[arrIndex][0] = parseTextEmp("Le Monde|Santo André|Pronto para morar|•
 descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps?ll=-23.664353,-46.531031&z=18&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Venezuela,+251+-+Vila+Assun%C3%A7%C3%A3o+Santo+Andr%C3%A9+-+SP+09030-310
 arrEmpr[arrIndex][9] = L.marker([-23.664353,-46.531031], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
-
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Le Quartier|Santo André|Pronto para morar|• 3 suítes • 3 e 4 dorms. (com suítes)");
@@ -842,9 +926,11 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0])+'<br><br>'+getTextEmp(arrEmpr[ar
 arrEmpr[arrIndex][9] = L.marker([-23.532172,-46.568849], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 
-//arrEmpr[++arrIndex] = [];
-////arrEmpr[arrIndex][0] = parseTextEmp("Exclusive Tatuapé|Tatuapé|Pronto para morar|");
-//descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+arrEmpr[++arrIndex] = [];
+arrEmpr[arrIndex][0] = parseTextEmp("Exclusive Tatuapé|Tatuapé|Pronto para morar|");
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
+//https://www.google.com/maps?ll=-23.53565,-46.572188&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Duarte+de+Carvalho,+60+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03084-030
+arrEmpr[arrIndex][9] = L.marker([-23.53565,-46.572188], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("HUB Home Club Tatuapé|Tatuapé|Pronto para morar|");
@@ -864,9 +950,6 @@ arrEmpr[arrIndex][0] = parseTextEmp("Linea Home Resort Studios|Tatuapé|Pronto p
 descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps?ll=-23.536965,-46.565173&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Dr.+%C3%82ngelo+Vita,+335+-+Tatuap%C3%A9+S%C3%A3o+Paulo+-+SP+03069-000
 arrEmpr[arrIndex][9] = L.marker([-23.536965,-46.565173], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
-
-
-
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Linea Home Resort Tatuapé|Tatuapé|Pronto para morar|");
@@ -908,19 +991,6 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0])+'<br><br>'+getTextEmp(arrEmpr[ar
 arrEmpr[arrIndex][9] = L.marker([-23.583325,-46.585046], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 
-arrEmpr[++arrIndex] = [];
-arrEmpr[arrIndex][0] = parseTextEmp("GranDiálogo Vila Prudente - Gran Home Club|Vila Prudente|Pronto para morar|");
-descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//https://www.google.com/maps/place/Av.+do+Orat%C3%B3rio,+401+-+Vila+Independencia,+S%C3%A3o+Paulo+-+SP,+03221-000/@-23.582471,-46.560263,16z/data=!4m6!3m5!1s0x94ce5d58a0b9ed1d:0x3d8e808bd4404c44!8m2!3d-23.5824712!4d-46.5602632!16s%2Fg%2F11y55lw5_d?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
-arrEmpr[arrIndex][9] = L.marker([-23.582471,-46.560263], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
-
-arrEmpr[++arrIndex] = [];
-arrEmpr[arrIndex][0] = parseTextEmp("GranDiálogo Vila Prudente - Gran Smart|Vila Prudente|Pronto para morar|");
-descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
-//https://www.google.com/maps?ll=-23.582538,-46.560646&z=12&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+do+Orat%C3%B3rio,+291+-+Jardim+Independ%C3%AAncia+(S%C3%A3o+Paulo)+S%C3%A3o+Paulo+-+SP+03221-000
-arrEmpr[arrIndex][9] = L.marker([-23.582538,-46.560646], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
-
-// Cade GranDiálogo Vila Prudente Mall ?
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Panoramico Home|Vila Prudente|Pronto para morar|");
