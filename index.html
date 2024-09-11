@@ -84,13 +84,12 @@
 	});	
 	
 	const iconPronto = new LeafIcon({iconUrl: 'google_maps_pin_PNG26.png'});
-	const iconPortfolio = new LeafIcon({opacity:0.5, iconUrl: 'google_maps_pin_lightOrange.png'});
+	const iconPortfolio = new LeafIcon({iconUrl: 'google_maps_pin_lightOrange.png'});
 	const iconFuturoLancamento = new LeafIcon({iconUrl: 'google_maps_pin_Red.png'});
 	const iconBreveLancamento = new LeafIcon({iconUrl: 'google_maps_pin_lightBlue.png'});
 	const iconLancamento = new LeafIcon({iconUrl: 'google_maps_pin_Green.png'});
 	const iconConstrucao = new LeafIcon({iconUrl: 'google_maps_pin_Blue.png'});
 	const iconUndefined = new LeafIcon({iconUrl: 'google_maps_pin_undefined.png'});
-
 
 
 
@@ -212,7 +211,7 @@ arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Lavie Santana|Santana|Portfólio|");
 descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps?ll=-23.491182,-46.638033&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Piracema,+276+-+Santana+S%C3%A3o+Paulo+-+SP+02460-040
-arrEmpr[arrIndex][9] = L.marker([-23.491182,-46.638033], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+arrEmpr[arrIndex][9] = L.marker([-23.491182,-46.638033], {autoPanOnFocus:true, opacity:0.5, icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Santana Private|Santana|Portfólio|");
@@ -432,7 +431,7 @@ arrEmpr[arrIndex][9] = L.marker([-23.637828,-46.69539], {icon: getTextStatus(arr
 
 
 arrEmpr[++arrIndex] = [];
-arrEmpr[arrIndex][0] = parseTextEmp("Bosque Diálogo Jd. Prudência|Jardim Prudência|Breve lançamento|29 a 128m²<br>1 suíte | 2 e 3 dorms. (1 suíte) | 3 suítes<br>1.000m² de bosque privativo e um lazer de clube completo integrado ao verde.");
+arrEmpr[arrIndex][0] = parseTextEmp("Bosque Diálogo Jd. Prudência|Jardim Prudência|Breve lançamento|29 a 128m²<br>1 suíte 2 e 3 dorms. (1 suíte) 3 suítes<br>1.000m² de bosque privativo e um lazer de clube completo integrado ao verde.");
 descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps?ll=-23.647272,-46.672861&z=14&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Dr.+Gentil+Leite+Martins,+300+-+Jardim+Prud%C3%AAncia+S%C3%A3o+Paulo+-+SP+04648-001
 arrEmpr[arrIndex][9] = L.marker([-23.647272,-46.672861], {icon: getTextStatus(arrEmpr[arrIndex][0])} ).bindPopup(descr_empree).addTo(map);
@@ -828,7 +827,7 @@ arrEmpr[arrIndex][9] = L.marker([-23.582538,-46.560646], {icon: getTextStatus(ar
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("GranDiálogo Vila Prudente - Gran Offices|Vila Prudente|Pronto para investir|Offices");
-descr_empree = getTextEmp(arrEmpr[arrIndex][0])+'<br><br>'+getTextEmp(arrEmpr[arrIndex][1]);
+descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps?ll=-23.582538,-46.560646&z=12&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+do+Orat%C3%B3rio,+291+-+Jardim+Independ%C3%AAncia+(S%C3%A3o+Paulo)+S%C3%A3o+Paulo+-+SP+03221-000
 arrEmpr[arrIndex][9] = L.marker([-23.582538,-46.560646], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
@@ -979,7 +978,7 @@ arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Vista Parque Villa Lobos|Vila Leopoldina|Pronto para morar|");
 descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps?ll=-23.534553,-46.727038&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=Av.+Imperatriz+Leopoldina,+1623+-+Vila+Leopoldina+S%C3%A3o+Paulo+-+SP+05305-007
-arrEmpr[arrIndex][9] = L.marker([-23.534553,-46.727038], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
+arrEmpr[arrIndex][9] = L.marker([-23.534553,-46.727038],  {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Club Station Vila Prudente|Vila Prudente|Pronto para morar|");
