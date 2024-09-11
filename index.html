@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -618,12 +617,13 @@ descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps/place/Alameda+Fern%C3%A3o+Cardim,+75+-+Jardim+Paulista,+S%C3%A3o+Paulo+-+SP,+01403-020/@-23.569796,-46.652223,14z/data=!4m6!3m5!1s0x94ce59c09675f635:0xa28096259a94272e!8m2!3d-23.5697957!4d-46.652223!16s%2Fg%2F11c2d1mlpp?hl=pt-BR&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D
 arrEmpr[arrIndex][9] = L.marker([-23.569796,-46.652223], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
 
+/*	
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Rua Gentil Leite|Jardim Prudência|Futuro lançamento|");
 descr_empree = getTextEmp(arrEmpr[arrIndex][0]);
 //https://www.google.com/maps?ll=-23.647272,-46.672861&z=16&t=m&hl=pt-BR&gl=BR&mapclient=embed&q=R.+Dr.+Gentil+Leite+Martins,+300+-+Jardim+Prud%C3%AAncia+S%C3%A3o+Paulo+-+SP+04648-001
 arrEmpr[arrIndex][9] = L.marker([-23.647272,-46.672861], {icon: getTextStatus(arrEmpr[arrIndex][0])}).bindPopup(descr_empree).addTo(map);
-
+*/
 
 arrEmpr[++arrIndex] = [];
 arrEmpr[arrIndex][0] = parseTextEmp("Rua Padre Raposo|Mooca|Futuro lançamento|");
